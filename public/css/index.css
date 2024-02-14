@@ -1,0 +1,40 @@
+.logAndres{
+    display: flex   ;
+}
+
+.typeAcc { 
+    display: flex;
+    flex-direction: row;
+    margin-left: 70%;
+}
+
+.cardLeft { 
+background-image: url(img/wa.png );
+background-size: 170px;
+background-position: 40% 80%;
+background-repeat: no-repeat ;
+   
+}
+
+
+.cardRight { 
+    background-image: url(img/right.png );
+    background-size: 170px;
+    background-position: 40% 80%;
+    background-repeat: no-repeat ;
+       
+    }
+
+
+.cardLeft,
+.cardRight {
+    height: 350px;
+}
+
+.typeAcc {
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 120px;
+}
