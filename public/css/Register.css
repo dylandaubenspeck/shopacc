@@ -1,0 +1,92 @@
+ .formSignup {
+            min-height: 100%;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(rgba(255, 163, 163, 0.3), rgb(243, 244, 246)), url(https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg);
+            background-size: cover;
+            background-blend-mode: multiply;
+
+        }
+        input {
+            border-color: #ff9494ff;
+            box-shadow: 0 0 0 2px #ff9494ff;
+        }
+        .error { 
+            color: red;
+        }
+        .custom-button {
+        background: linear-gradient(to left, rgba(255, 102, 102, 0.7), transparent) 1;
+        width: 100%; 
+        padding: 10px;
+        border: none;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .custom-button:hover {
+        background-color: #ff9494; /* Màu nền khi hover */
+        box-shadow: 0px 8px 15px rgba(244, 28, 28, 0.2); /* Shadow khi hover */
+    }
+
+  
+    .bg-imageLeft{
+    background-image: url('img/reyna.png');
+    background-size: cover;
+    background-position: center;
+    transform:translateX(55%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    z-index: -1;
+}
+
+.bg-imageRight {
+    background-image: url('img/Untitled\ design.png');
+    background-size: cover;
+    transform:translateX(65%);
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    z-index: -2; 
+}
+#terms:checked {
+    background-color: rgb(252, 87, 115); 
+    border: rgba(255, 102, 102, 0.7);
+}
+
+.form-register {
+    opacity: 0;
+    animation: fadeIn 1.3s ease forwards;
+}
+
+#username:focus,#email:focus, #password:focus, #confirm-password:focus {
+    border-color: #be82e0ff;
+    background-color: #f0f4f8; 
+    color: #333; 
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 800px) {
+    .bgimg {
+    visibility: hidden;
+  } 
+}
