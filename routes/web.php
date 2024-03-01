@@ -26,6 +26,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/topup', [\App\Http\Controllers\TopupController::class, 'topupView'])->name('topup');
+    Route::post('/topup', [\App\Http\Controllers\TopupController::class, 'createPayment'])->name('topup.create');
     Route::get('/profile', [\App\Http\Controllers\PagesController::class, 'profileView'])->name('profile');
 });
 

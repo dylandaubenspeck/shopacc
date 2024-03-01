@@ -66,9 +66,13 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Tạo tài khoản
                     </h1>
-                    @if (session('error'))
+                    @if ($errors->any())
                         <div class="alert alert-danger">
-                            {{ session('error') }}
+                            <ul class="text-red-400">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
                     <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('register') }}">

@@ -75,6 +75,7 @@ class TopupController extends Controller
             $topupRequest->paymentNumber = $crafted['accountNumber'];
             $topupRequest->paymentContent = $crafted['description'];
             $topupRequest->paymentBank = "MB";
+            $topupRequest->paymentMetadata = $crafted['description'];
             $topupRequest->save();
             DB::commit();
 

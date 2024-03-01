@@ -18,9 +18,13 @@
                         class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Đăng nhập
                     </h1>
-                    @if (session('error'))
+                    @if ($errors->any())
                         <div class="alert alert-danger">
-                            {{ session('error') }}
+                            <ul class="text-red-400">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
                     <form class="space-y-6 md:space-y-8 md:w-full lg:w-96 " method="POST" action="{{ route('login') }}">
