@@ -27,10 +27,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Card 1 -->
             <div
-                class=" mx-auto overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:bright-outline">
+                class=" mx-auto overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:bright-outline buyOrder" data-type="15">
                 <div class="bg-white dark:bg-gray-800">
                     <div class="p-6">
-                        <h2 class="text-xl font-bold text-gray-800 dark:text-white">Card Title</h2>
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-white">Mua account random giá 15K</h2>
                         <p class="mt-2 text-gray-600 dark:text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit. Integer vel molestie risus, eget tincidunt ligula.</p>
                     </div>
@@ -38,16 +38,21 @@
             </div>
 
             <div
-                class="mx-auto overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:bright-outline">
+                class="mx-auto overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:bright-outline buyOrder" data-type="30">
                 <div class="bg-white dark:bg-gray-800">
                     <div class="p-6">
-                        <h2 class="text-xl font-bold text-gray-800 dark:text-white">Card Title</h2>
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-white">Mua account random giá 30K</h2>
                         <p class="mt-2 text-gray-600 dark:text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit. Integer vel molestie risus, eget tincidunt ligula.</p>
                     </div>
                 </div>
             </div>
+
         </div>
+
+        @guest()
+            <p class="text-red-600 my-6 text-center">* Chỉ khả dụng khi bạn đã đăng nhập.</p>
+        @endguest
     </main>
 
     <section class="bg-white dark:bg-gray-900">
@@ -167,4 +172,52 @@
             </div>
         </section>
     </section>
+@endsection
+
+@section('authJs')
+<script>
+    $('.buyOrder').click(function (e) {
+        const typeAcc = $(this).data('type');
+        $.ajax({
+            url: "{{ route('buyOrder') }}",
+            type: 'post',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                productId: typeAcc
+            },
+            dataType: 'json',
+            success: function (data) {
+                Swal.fire({
+                    title: "Mua hàng thành công!",
+                    text: data.data,
+                    icon: "success"
+                });
+            },
+            error: function(error)
+            {
+                data = error.responseJSON
+                msg = '';
+                switch (data.data)
+                {
+                    case 'balance_not_enough':
+                        msg = 'Không đủ số dư.'
+                        break;
+                    case 'product_not_available':
+                        msg = 'Phân loại đã cháy hàng.'
+                        break;
+                    case 'product_not_found':
+                        msg = 'Không tìm thấy sản phẩm.'
+                        break;
+                    default:
+                        msg = data.data;
+                        break;
+                }
+
+                toast('error', msg)
+            }
+        });
+    })
+</script>
 @endsection

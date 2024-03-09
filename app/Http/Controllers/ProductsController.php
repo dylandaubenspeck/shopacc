@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Accounts;
 use App\Models\Products;
 use App\Models\Transactions;
 use App\Models\User;
@@ -103,6 +104,10 @@ class ProductsController extends Controller
             }
 
             $returnedAccount = UtilsController::getRandomAccount($product->stockName);
+
+            Accounts::where('id', $returnedAccount['id'])->update(['userId' => $user->id]);
+            $user->increment('exp', $product->exp);
+            $user->save();
 
             Transactions::where('id', $transaction['data'])->update([
                 'result' => $returnedAccount['data']

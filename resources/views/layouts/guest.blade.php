@@ -44,6 +44,9 @@
     }
 </script>
 @yield('javascript')
+@auth()
+    @yield('authJs')
+@endauth
 </body>
 </html>
 

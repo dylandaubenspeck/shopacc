@@ -72,7 +72,7 @@ class UtilsController extends Controller
         }
     }
 
-    public static function getRandomAccount(int $type)
+    public static function getRandomAccount(int $type, $agent = 1)
     {
         try {
             // type: 15, 30, daily, daily5, daily10, daily20
@@ -87,14 +87,16 @@ class UtilsController extends Controller
             ];
 
             DB::beginTransaction();
-            $account = $query->random(1)->first();
+            $account = $query->inRandomOrder()->first();
             $account->status = 1;
+            $account->note = $agent > 1 ? 'discord' : 'website';
             $account->save();
             DB::commit();
 
             return [
                 'status' => 1,
-                'data' => $account->username . ':' . $account->password
+                'data' => $account->username . ':' . $account->password,
+                'id' => $account->id
             ];
         } catch (\Exception $e)
         {

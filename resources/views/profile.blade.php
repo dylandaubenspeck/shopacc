@@ -27,19 +27,19 @@
                         <div class="itemProfile">
                             <label class="itemProfile_Child">Tên đăng nhập: </label>
                             <label class="itemProfile_Child itemProfile_Child1"
-                            >toandeptrai21</label
+                            >{{ \Illuminate\Support\Facades\Auth::user()->username }}</label
                             >
                         </div>
                         <div class="itemProfile">
                             <label class="itemProfile_Child">Email: </label>
                             <label class="itemProfile_Child itemProfile_Child1"
-                            >Demo@gmail.com</label
+                            >{{ \Illuminate\Support\Facades\Auth::user()->email ?? 'Trống' }}</label
                             >
                         </div>
                         <div class="itemProfile">
                             <label class="itemProfile_Child">Số dư: </label>
                             <label class="itemProfile_Child itemProfile_Child1"
-                            >00000</label
+                            >{{ number_format(\Illuminate\Support\Facades\Auth::user()->balance) }}</label
                             >
                         </div>
                     </div>
@@ -131,28 +131,22 @@
                         <th class="itemTd">Số tiền</th>
 
                         <th class="itemTd">Tài khoản</th>
-                        <th class="itemTd">Mật khẩu</th>
                         <th class="itemTd">Ngày mua</th>
                     </tr>
+                    @foreach($transactions as $item)
                     <tr>
-                        <td class="itemTd">1</td>
-                        <td class="itemTd">Sản phẩm A</td>
-                        <td class="itemTd">100</td>
+                        <td class="itemTd">{{ $item->id }}</td>
+                        <td class="itemTd">{{ $item->productName }}</td>
+                        <td class="itemTd">{{ $item->amount }}</td>
 
-                        <td class="itemTd">user123</td>
-                        <td class="itemTd">********</td>
-                        <td class="itemTd">2024-02-25</td>
+                        <td class="itemTd">{{ $item->result }}</td>
+                        <td class="itemTd">{{ $item->created_at }}</td>
                     </tr>
-                    <tr>
-                        <td class="itemTd">2</td>
-                        <td class="itemTd">Sản phẩm B</td>
-                        <td class="itemTd">150</td>
-
-                        <td class="itemTd">user456</td>
-                        <td class="itemTd">********</td>
-                        <td class="itemTd">2024-02-24</td>
-                    </tr>
+                    @endforeach
                 </table>
+                <div class="w-4/6 mx-auto mt-4">
+                    {{ $transactions->links('pagination::tailwind') }}
+                </div>
             </div>
             <div class="orderHistory">
                 <h3 class="headerHistory"><b>Lịch sử nạp tiền </b></h3>
@@ -164,19 +158,19 @@
                         <th class="itemTd">Số tiền</th>
                         <th class="itemTd">Ngày nạp</th>
                     </tr>
+                    @foreach($topups as $item)
                     <tr>
-                        <td class="itemTd">1</td>
-                        <td class="itemTd">ACB</td>
-                        <td class="itemTd">500000</td>
-                        <td class="itemTd">2024-02-25</td>
+                        <td class="itemTd">{{ $item->id }}</td>
+                        <td class="itemTd">MB</td>
+                        <td class="itemTd">{{ $item->status == 1 ? "Thành công" : ($item->status == 2 ? "Thất bại" : "Đang chờ") }}</td>
+                        <td class="itemTd">{{ number_format($item->amount) }}</td>
+                        <td class="itemTd">{{ $item->created_at }}</td>
                     </tr>
-                    <tr>
-                        <td class="itemTd">2</td>
-                        <td class="itemTd">Vietcombank</td>
-                        <td class="itemTd">1000000</td>
-                        <td class="itemTd">2024-02-24</td>
-                    </tr>
+                    @endforeach
                 </table>
+                <div class="w-4/6 mx-auto mt-4">
+                    {{ $topups->links('pagination::tailwind') }}
+                </div>
             </div>
         </div>
     </section>
