@@ -1,0 +1,27 @@
+
+
+#mainContent { 
+    display: flex;
+    gap: 50px;
+    justify-content:center;
+    background: linear-gradient(rgba(255, 163, 163, 0.3), rgb(243, 244, 246)), url(https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg);
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+
+.allRating, .uRating {
+    border-radius: 5px;
+    width: 500px;
+    padding: 40px;
+}
+
+
+textarea:focus {
+    border-color: #ff0000; /* Màu border khi focus */
+}
+
+
+
+
+
+

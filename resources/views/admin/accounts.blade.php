@@ -55,6 +55,7 @@
         </div>
     </div>
 @endsection
+<<<<<<< HEAD
 
 @section('javascript')
 <script>
@@ -82,3 +83,5 @@
     });
 </script>
 @endsection
+=======
+>>>>>>> 89f4710a0b30245700057a3d948f0a3eea973357

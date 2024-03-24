@@ -1,0 +1,125 @@
+input {
+    border-color: #ff9494ff;
+
+    box-shadow: 0 0 0 2px #ff9494ff;
+
+  }
+
+  #mainContent {
+    
+    display: flex;
+    flex-direction: colum;
+    justify-content: center;
+    background: linear-gradient(rgba(255, 163, 163, 0.3), rgb(243, 244, 246)), url(https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg);
+  }
+  .childContent{
+display: flex;
+flex-direction: column;
+}
+
+
+
+  .leftContent {
+    margin-right: 20px;
+    background-color: rgb(252, 252, 252);
+    width: 500px;
+    max-height: 700px;
+    text-align: center;
+
+  }
+
+  .rightContent {
+    margin-left: 20px;
+    background-color: rgb(252, 252, 252);
+    width: 500px;
+    height: 700px;
+    text-align: left;
+
+  }
+
+  .content {
+    /* margin-right: 60px; */
+    border-radius: 10px;
+    border: 3px solid #ff9494ff;
+    margin-top: 40px;
+    margin-bottom: 45px;
+    opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+
+  }
+
+  .stk,
+  .bankMess,
+  .typeBank {
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+
+  .typeBank {
+    margin-top: 100px;
+  }
+
+  .qr {
+    margin-top: 59px;
+    border: 3px solid rgb(163, 77, 77);
+  }
+
+  .step {
+    margin-top: 25px;
+  }
+
+  .bg-imageLeft {
+    background-image: url('img/owen.png');
+    background-size: cover;
+    background-position: center;
+    transform: translateX(-10%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    z-index: -1;
+  }
+  .bg-imageRight {
+  background-image: url('img/chammbar.png');
+  background-size: cover;
+  transform: translateX(240%);
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 27%;
+  height: 100%;
+  z-index: -2;
+}
+#contentChild { 
+justify-content: space-around;
+display: flex;
+}
+@media (max-width: 800px) {
+.backimg {
+  visibility: hidden;
+}
+.copy {
+scale: 0.8;
+}
+.content {
+  margin: 0;
+  margin-top: 10px;
+  width: 100%;
+}
+#contentChild  {
+  margin: 0;
+  flex-direction: column;
+}
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px); /* Di chuyển form lên trên một chút */
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
