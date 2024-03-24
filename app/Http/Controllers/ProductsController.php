@@ -73,6 +73,10 @@ class ProductsController extends Controller
     public function buyOrder(Request $request)
     {
         try {
+            if (!Auth::check()) return response()->json([
+                'status' => 0,
+                'data' => 'login'
+            ], 500);
             $productId = $request->input('productId');
             $user = User::where('id', Auth::id())->first();
 

@@ -7,10 +7,10 @@
         <a type="button" class="btn btn-dark" href="{{ route('admin.accounts', ['showSold' => 1]) }}">Hiện thị kèm accounts đã bán</a>
     @endif
     <form method="GET" action="{{ route('admin.accounts') }}">
-    <select class="form-select" aria-label="Default select example">
+    <select class="form-select" aria-label="Default select example" id="filterType">
         <option selected disabled>Lọc theo loại account.</option>
         @foreach($type as $item)
-            <option value="{{ $item }}">{{ $item }}</option>
+            <option value="{{ $item }}" @if(request()->has('type') && $item == request()->get('type')) selected @endif >{{ $item }}</option>
         @endforeach
     </select>
     </form>
@@ -54,4 +54,31 @@
 
         </div>
     </div>
+@endsection
+
+@section('javascript')
+<script>
+    function getTypeParameterValue() {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('type');
+    }
+
+    // Function to build the modified URL with the new 'type' parameter
+    function buildModifiedURL(type) {
+        var url = window.location.href;
+        var urlParams = new URLSearchParams(window.location.search);
+
+        // Set the value of the 'type' parameter
+        urlParams.set('type', type);
+
+        // Update the URL with the modified query parameters
+        url = url.split('?')[0] + '?' + urlParams.toString();
+
+        return url;
+    }
+    $('#filterType').on('change', function(e) {
+        const choice = $(this).val()
+        window.location.replace(buildModifiedURL(choice));
+    });
+</script>
 @endsection

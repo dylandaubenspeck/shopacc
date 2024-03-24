@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('googleId')->nullable();
             $table->string('facebookId')->nullable();
             $table->timestamps();
+            $table->dateTime('reward_claimed')->useCurrent();
         });
     }
 

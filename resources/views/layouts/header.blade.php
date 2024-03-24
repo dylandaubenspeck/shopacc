@@ -13,8 +13,9 @@
         @auth()
             <div class="hidden md:flex md:w-auto md:space-x-4" id="navbar-default">
                 <ul class="flex items-center space-x-4">
-                    <li><a href="{{ route('topup') }}" class="text-gray-600 hover:text-gray-900">Top-up</a></li>
-                    <li><a href="{{ route('profile') }}" class="text-gray-600 hover:text-gray-900">Profile</a></li>
+                    <li><a href="{{ route('topup') }}" class="text-gray-600 hover:text-gray-900">Nạp tiền</a></li>
+                    <li><a href="{{ route('profile') }}" class="text-gray-600 hover:text-gray-900">Tài khoản</a></li>
+                    <li><a href="{{ route('level') }}" class="text-gray-600 hover:text-gray-900">Thưởng cấp</a></li>
                     <li><form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="{{ route('logout') }}" class="text-gray-600 hover:text-gray-900" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
@@ -35,7 +36,7 @@
                 </div>
             </form>
         @else
-            <a class="text-gray-600 hover:text-gray-900">Welcome, {{ \Illuminate\Support\Facades\Auth::user()->username }}</a>
+            <a class="text-gray-600 hover:text-gray-900">Welcome, {{ \Illuminate\Support\Facades\Auth::user()->username }} ({{ number_format(\Illuminate\Support\Facades\Auth::user()->balance) }}đ)</a>
         @endguest
     </nav>
 {{--    <div class="flex items-center">--}}

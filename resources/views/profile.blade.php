@@ -6,7 +6,7 @@
     <section>
         <div id="mainContent">
             <div class="box">
-                <div class="bg-imageLeft bgimg"></div>
+                <div class="bg-imageLeft bgimg" style="background-image: url('{{ asset('') }}')"></div>
                 <div class="bg-imageRight bgimg"></div>
                 <div class="childContent">
                     <div
@@ -27,7 +27,7 @@
                         <div class="itemProfile">
                             <label class="itemProfile_Child">Tên đăng nhập: </label>
                             <label class="itemProfile_Child itemProfile_Child1"
-                            >{{ \Illuminate\Support\Facades\Auth::user()->username }}</label
+                                >{{ \Illuminate\Support\Facades\Auth::user()->username }}</label
                             >
                         </div>
                         <div class="itemProfile">

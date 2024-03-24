@@ -163,7 +163,9 @@
 
         <div id="contentChildTwo" style="display: none" class="maincontent2">
             <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <div id="qrCode" class="flex justify-center items-center"></div>
+                <div class="flex justify-center items-center">
+                    <img id="qrCode" class="object-cover max-w-full max-h-full" style="width: 70%" />
+                </div>
                 <div class="mt-6">
                     <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white text-center my-3">Thông tin chuyển khoản</h5>
                     <p class="text-center text-sm text-gray-500 truncate dark:text-gray-400">
@@ -286,13 +288,7 @@
                     }
                 }, 1000);
             }
-            const generateQrCode = (url) => {
-                const qr = new QRCode(document.getElementById("qrCode"), {
-                    text: url,
-                    width: 200,
-                    height: 200,
-                });
-            };
+
             function formatCurrency(number) {
                 var formattedNumber = parseFloat(number).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
                 return formattedNumber;
@@ -327,8 +323,8 @@
                     success: function (data) {
                         $('.mainContent1').hide();
                         data = data.data
-                        generateQrCode(data.qr)
-                        $('#qrCode').addClass('object-cover max-w-full max-h-full')
+                        $('#qrCode').attr('src', `https://img.vietqr.io/image/${data.bin}-${data.number}-qr_only.png?amount=${data.amount}&addInfo=${data.description.split(' ').join('+')}`)
+                        // generateQrCode(data.qr)
                         $('#tentk').html(data.name)
                         $('#sotk').html(data.number)
                         $('#noidung').html(data.description)

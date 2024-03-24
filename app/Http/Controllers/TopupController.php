@@ -96,7 +96,8 @@ class TopupController extends Controller
                     'number' => $crafted['accountNumber'],
                     'name' => $crafted['accountName'],
                     'amount' => $crafted['amount'],
-                    'description' => $crafted['description']
+                    'description' => $crafted['description'],
+                    'bin' => $crafted['bin']
                 ]
             ]);
         } catch (\Exception $e)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Accounts;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,7 +73,48 @@ class UtilsController extends Controller
         }
     }
 
-    public static function getRandomAccount(int $type, $agent = 1)
+    public static function countStock($name)
+    {
+        try {
+            $query = Accounts::where([
+                ['type', $name],
+                ['status', 0]
+            ])->count();
+
+            return [
+                'status' => 1,
+                'data' => $query
+            ];
+        } catch (\Exception $e)
+        {
+            Log::error(__FILE__ . ' - ' . __FUNCTION__ . ' - ' . json_encode($e));
+            return [
+                'status' => 0,
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
+    protected function agentResolver($agent)
+    {
+        $result = '';
+        switch ($agent)
+        {
+            case 1:
+                $result = 'website';
+                break;
+            case 2:
+                $result = 'discord';
+                break;
+            case 3:
+                $result = 'checkin';
+                break;
+        }
+
+        return $result;
+    }
+
+    public static function getRandomAccount(string $type, $agent = 1)
     {
         try {
             // type: 15, 30, daily, daily5, daily10, daily20
@@ -89,7 +131,7 @@ class UtilsController extends Controller
             DB::beginTransaction();
             $account = $query->inRandomOrder()->first();
             $account->status = 1;
-            $account->note = $agent > 1 ? 'discord' : 'website';
+            $account->note = (new UtilsController)->agentResolver($agent);
             $account->save();
             DB::commit();
 
@@ -110,7 +152,7 @@ class UtilsController extends Controller
         }
     }
 
-    public static function checkAccountStock(int $type)
+    public static function checkAccountStock(string $type)
     {
         try {
             $query = Accounts::where([
@@ -222,5 +264,72 @@ class UtilsController extends Controller
 
         Auth::login($user);
         return redirect('/');
+    }
+
+    public function levelView()
+    {
+        return view('level');
+    }
+
+    protected function calculateReward()
+    {
+        $user = Auth::user();
+
+        if (Carbon::parse($user->reward_claimed)->gt(Carbon::now()->timezone('Asia/Ho_Chi_Minh')))
+        {
+            return [
+                'status' => 0,
+                'data' => 'Đã nhận quà hôm nay'
+            ];
+        }else{
+            $currentLevel = $user->level();
+
+            if (self::countStock($currentLevel->stockName)['data'] <= 0) return [
+                'status' => 0,
+                'data' => 'Không có account có sẵn hôm nay.'
+            ];
+
+            $returnedAccount = UtilsController::getRandomAccount($currentLevel->stockName);
+            $user->reward_claimed = Carbon::now()->timezone('Asia/Ho_Chi_Minh');
+            $user->save();
+
+            return [
+                'status' => 1,
+                'data' => $returnedAccount['data']
+            ];
+        }
+    }
+
+    public function claimReward()
+    {
+        try {
+            if (!Auth::check()) return response()->json([
+                'status' => 0,
+                'data' => 'Hệ thống lỗi'
+            ], 500);
+            $user = Auth::user();
+            if (empty($user->level())) return response()->json([
+                'status' => 0,
+                'data' => 'Chưa kích hoạt tính năng này.'
+            ], 500);
+            $result = self::calculateReward();
+            if ($result['status'] == 1)
+            {
+                return response()->json([
+                    'status' => 1,
+                    'data' => $result['data']
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 0,
+                    'data' => $result['data']
+                ], 500);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 0,
+                'data' => 'Hệ thống lỗi'
+            ], 500);
+        }
     }
 }

@@ -31,6 +31,7 @@ class User extends Authenticatable
         'status',
         'admin',
         'balance',
+        'reward_claimed',
     ];
 
     /**
@@ -64,4 +65,11 @@ class User extends Authenticatable
         'public_flags' => 'integer',
         'roles' => 'json',
     ];
+
+    public function level()
+    {
+        return Levels::where('expNeeded', '<=', $this->exp)
+            ->orderBy('expNeeded', 'desc')
+            ->first();
+    }
 }
