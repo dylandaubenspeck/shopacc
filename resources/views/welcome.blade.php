@@ -91,7 +91,7 @@
                         @if($rating > 0)
                             @php($avgRate = \App\Models\Feedbacks::where('product', $product->id)->sum('stars'))
                             <div class="flex items-center mb-3 justify-center">
-                                <div class="flex star-rating" data-amount="{{ $avgRate / $rating }}">
+                                <div class="flex star-rating" data-amount="{{ floor($avgRate / $rating) }}">
                                 </div>
                             </div>
                         @endif
