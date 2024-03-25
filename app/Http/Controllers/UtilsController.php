@@ -484,7 +484,8 @@ class UtilsController extends Controller
         $rating->product = $request->product;
         $rating->save();
 
-        UtilsController::systemDiscordNotify('User: ' . Auth::user()->username . ' | Đánh giá: ' . $request->stars . ' ⭐ | Với lời nhắn: ' . $request->message . ' | ' . $request->product == 'all' ? 'User đánh giá chung.' : 'Trong sản phẩm: ' . $request->product);
+        $belongTo = $request->product == 'all' ? 'User đánh giá chung.' : 'Trong sản phẩm: ' . $request->product;
+        UtilsController::systemDiscordNotify('User: ' . Auth::user()->username . ' | Đánh giá: ' . $request->stars . ' ⭐ | Với lời nhắn: ' . $request->message . ' | ' . $belongTo);
 
         return response()->json([
             'status' => 1,
