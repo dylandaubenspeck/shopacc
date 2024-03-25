@@ -453,7 +453,7 @@ class UtilsController extends Controller
         if (Transactions::where([
                 ['userId', Auth::user()->id],
                 ['transactionType', 1],
-                ['status', 1]
+                ['transactionType', 1]
             ])->count() % 5 !== 0) return redirect()->route('home');
         return view('feedback');
     }
@@ -470,7 +470,7 @@ class UtilsController extends Controller
         if (Transactions::where([
             ['userId', $user->id],
             ['transactionType', 1],
-            ['status', 1]
+            ['transactionType', 1]
         ])->count() % 5 !== 0) return response()->json([
             'status' => 0,
             'data' => 'Lượt mua của bạn chưa đủ để thêm đánh giá'
