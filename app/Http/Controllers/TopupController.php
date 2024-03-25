@@ -145,7 +145,7 @@ class TopupController extends Controller
                 'data' => 'cút'
             ]);
 
-            if ($request->code != 01)
+            if ($request->code != 00)
             {
                 Log::error(__FILE__ . ' - ' . __FUNCTION__ . ' - Webhook sent but the status is not quite right. Trace ID: ' . $request->data['orderCode']);
                 UtilsController::systemDiscordNotify(__FILE__ . ' - ' . __FUNCTION__ . ' - Webhook sent but the status is not quite right. Trace ID: ' . $request->data['orderCode']);

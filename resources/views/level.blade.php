@@ -174,7 +174,7 @@
                     @endif
 
                     <hr class="w-48 h-1 mx-auto my-6 bg-gray-100 border-0 rounded md:my-6 dark:bg-gray-700">
-                    @if(\Carbon\Carbon::parse(\Illuminate\Support\Facades\Auth::user()->reward_claimed)->lt(\Carbon\Carbon::now()->timezone('Asia/Ho_Chi_Minh')))
+                    @if(\Carbon\Carbon::parse(\Illuminate\Support\Facades\Auth::user()->reward_claimed)->diffInHours(\Carbon\Carbon::now()->timezone('Asia/Ho_Chi_Minh')) >= 24)
                         <form method="POST">
                             @csrf
                             <button type="button" id="confirmBuyButton"

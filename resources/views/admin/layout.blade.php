@@ -294,6 +294,14 @@
                                 Cấp bậc
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{ route('admin.topup') }}">
+                                <svg class="bi">
+                                    <use xlink:href="#house-fill"/>
+                                </svg>
+                                Nạp tiền
+                            </a>
+                        </li>
                     </ul>
 
                     <hr class="my-3">

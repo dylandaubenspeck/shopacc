@@ -62,7 +62,7 @@ class AdminController extends Controller
 
     public function ordersView()
     {
-        $transactions = Transactions::paginate(15);
+        $transactions = Transactions::orderBy('created_at', 'desc')->paginate(15);
         return view('admin.orders', ['data' => $transactions]);
     }
 
@@ -346,5 +346,11 @@ class AdminController extends Controller
         $type = UtilsController::getSetting('accountType')['data'];
         $toList = explode(',', $type);
         return view('admin.addLevel', ['list' => $toList]);
+    }
+
+    public function topupView()
+    {
+        $transactions = Topup::orderBy('created_at', 'desc')->paginate(15);
+        return view('admin.topup', ['data' => $transactions]);
     }
 }

@@ -42,7 +42,15 @@
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->type }}</td>
                             <td>{{ $item->username }}:<b>{{ $item->password }}</b></td>
-                            <td>{{ $item->userid ? $item->userid : 'Chưa ai mua' }}</td>
+                            <td>
+                                @if($item->note == 'website' || $item->note == 'checkin')
+                                    Sở hữu: User ID {{ $item->userid }}
+                                @elseif($item->note == 'discord')
+                                    Bán thông qua Discord
+                                @else
+                                    -
+                                @endif
+                            </td>
                             <td><button type="button" class="btn btn-danger delete" data-id="{{ $item->id }}">Xoá</button>
                             </td>
                         </tr>
@@ -50,13 +58,11 @@
                 </tbody>
             </table>
 
-            {!! $data->links() !!}
+            {!! $data->withQueryString()->links() !!}
 
         </div>
     </div>
 @endsection
-<<<<<<< HEAD
-
 @section('javascript')
 <script>
     function getTypeParameterValue() {
@@ -83,5 +89,3 @@
     });
 </script>
 @endsection
-=======
->>>>>>> 89f4710a0b30245700057a3d948f0a3eea973357

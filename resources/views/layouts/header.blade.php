@@ -36,7 +36,7 @@
                 </div>
             </form>
         @else
-            <a class="text-gray-600 hover:text-gray-900">Welcome, {{ \Illuminate\Support\Facades\Auth::user()->username }} ({{ number_format(\Illuminate\Support\Facades\Auth::user()->balance) }}đ)</a>
+            <a class="text-gray-600 hover:text-gray-900"><strong>{{ \Illuminate\Support\Facades\Auth::user()->username }}</strong> ({{ number_format(\Illuminate\Support\Facades\Auth::user()->balance) }}đ)</a>
         @endguest
     </nav>
 {{--    <div class="flex items-center">--}}

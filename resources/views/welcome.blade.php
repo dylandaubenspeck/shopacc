@@ -79,7 +79,7 @@
                             <span class="text-5xl font-extrabold tracking-tight">{{ number_format($product->productPrice) }}</span>
                             <span class="text-3xl font-semibold">đ</span>
                         </div>
-                        <ul role="list" class="space-y-5 my-7">
+                        <ul role="list" class="space-y-5 mt-7 mb-3">
                             <li class="flex items-center">
                                 <svg class="flex-shrink-0 w-4 h-4 text-blue-700 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
@@ -87,7 +87,16 @@
                                 <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400 ms-3">{{ number_format(\App\Http\Controllers\UtilsController::countStock($product->stockName)['data']) }} account đang có sẵn.</span>
                             </li>
                         </ul>
-                        @auth()
+                        @php($rating = \App\Models\Feedbacks::where('product', $product->id)->count())
+                        @if($rating > 0)
+                            @php($avgRate = \App\Models\Feedbacks::where('product', $product->id)->sum('stars'))
+                            <div class="flex items-center mb-3 justify-center">
+                                <div class="flex star-rating" data-amount="{{ $avgRate / $rating }}">
+                                </div>
+                            </div>
+                        @endif
+
+                    @auth()
                         <button type="button"
                             @if(\App\Http\Controllers\UtilsController::countStock($product->stockName)['data'] > 0)
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center actionBuy" data-id="{{ $product->id }}" data-modal-target="popup-modal" data-modal-toggle="popup-modal">Mua ngay</button>
@@ -174,6 +183,33 @@
 
 @section('authJs')
 <script>
+    $(document).ready(function (e) {
+        $('.star-rating').each(function (e) {
+            var startTime = performance.now()
+            const starsAmount = $(this).attr('data-amount');
+            for (let i = 0; i < starsAmount; i++) {
+                var star = ``;
+                star = `<svg class="h-5 w-5 fill-current text-yellow-500 my-auto" viewBox="0 0 24 24">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2M12 5V13L9.67 16.18L10.5 11.62L7.5 8.75L11.19 8.29L12 5Z" />
+        </svg>`
+                $(this).append(star)
+            }
+
+            for (let i = 0; i < (5 - starsAmount); i++)
+            {
+                var star = ``;
+                star = `        <svg class="h-5 w-5 fill-current text-gray-400 my-auto" viewBox="0 0 24 24">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2M12 5V13L9.67 16.18L10.5 11.62L7.5 8.75L11.19 8.29L12 5Z" />
+        </svg>`;
+                $(this).append(star)
+            }
+
+            $(this).append(`<span class="ml-2 text-gray-700 flex justify-center">${starsAmount}.0</span>`)
+            var endTime = performance.now()
+            console.log(`[debug] Khởi tạo trong ${Math.floor(endTime - startTime) / 100} mili giây.`)
+        })
+    })
+
     $('.actionBuy').click(function (e) {
         const productId = $(this).data('id')
         $('#confirmBuyButton').attr('data-productId', productId)
@@ -191,13 +227,16 @@
             },
             dataType: 'json',
             success: function (data) {
+                console.log(data)
                 Swal.fire({
                     title: "Mua hàng thành công!",
                     text: data.data,
                     icon: "success"
                 }).then((result) => {
-                    if (result.isConfirmed) {
+                    if (result.isConfirmed && data.rateable !== false) {
                         location.reload()
+                    }else{
+                        window.location.href = '{{ route('feedbacks.create') }}';
                     }
                 });
             },

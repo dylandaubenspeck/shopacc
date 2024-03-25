@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accounts;
+use App\Models\Feedbacks;
+use App\Models\Products;
+use App\Models\Transactions;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
@@ -152,6 +155,57 @@ class UtilsController extends Controller
         }
     }
 
+    public function getDiscordAccont(Request $request)
+    {
+        try {
+            if (!$request->header('Authorization') !== null && $request->header('Authorization') == env('EXTERNAL_API_TOKEN'))
+            {
+                if (self::countStock($request->input('accountType'))['data'] <= 0) return response()->json([
+                    'status' => 0,
+                    'data' => 'out_of_stock'
+                ]);
+                $randomAccount = self::getRandomAccount($request->input('accountType'), 2);
+                $product = Products::where('stockName', $request->input('accountType'))->first();
+
+                $user = User::where('discordId', $request->input('discordId'))->first();
+                if (!empty($user)) $user->increment('exp', $product->exp);
+
+                DB::beginTransaction();
+                $transaction = new Transactions();
+                $transaction->userId = $request->input('discordId');
+                $transaction->transactionType = 1;
+                $transaction->amount = $product->productPrice;
+                $transaction->productId = $product->id;
+                $transaction->productName = $product->productName;
+                $transaction->walletBefore = 1;
+                $transaction->walletAfter = 1;
+                $transaction->status = 1;
+                $transaction->result = $randomAccount;
+                DB::commit();
+                $transaction->save();
+
+                return response()->json([
+                    'status' => 1,
+                    'data' => $randomAccount
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 0,
+                    'data' => 'no'
+                ]);
+            }
+        } catch (\Exception $e)
+        {
+            DB::rollback();
+            Log::error(__FILE__ . ' - ' . __FUNCTION__ . ' - ' . $e->getMessage());
+            self::systemDiscordNotify(__FILE__ . ' - ' . __FUNCTION__ . ' - ' . $e->getMessage());
+            return response()->json([
+                'status' => 0,
+                'data' => $e->getMessage()
+            ]);
+        }
+    }
+
     public static function checkAccountStock(string $type)
     {
         try {
@@ -275,7 +329,7 @@ class UtilsController extends Controller
     {
         $user = Auth::user();
 
-        if (Carbon::parse($user->reward_claimed)->gt(Carbon::now()->timezone('Asia/Ho_Chi_Minh')))
+        if (Carbon::parse($user->reward_claimed)->diffInHours(Carbon::now()->timezone('Asia/Ho_Chi_Minh')) < 24)
         {
             return [
                 'status' => 0,
@@ -289,7 +343,8 @@ class UtilsController extends Controller
                 'data' => 'Không có account có sẵn hôm nay.'
             ];
 
-            $returnedAccount = UtilsController::getRandomAccount($currentLevel->stockName);
+            $returnedAccount = UtilsController::getRandomAccount($currentLevel->stockName, 3);
+            Accounts::where('id', $returnedAccount['id'])->update(['userid' => Auth::user()->id]);
             $user->reward_claimed = Carbon::now()->timezone('Asia/Ho_Chi_Minh');
             $user->save();
 
@@ -331,5 +386,47 @@ class UtilsController extends Controller
                 'data' => 'Hệ thống lỗi'
             ], 500);
         }
+    }
+
+    public function feedbackView()
+    {
+        if (Transactions::where([
+                ['userId', Auth::user()->id],
+                ['transactionType', 1],
+                ['status', 1]
+            ])->count() % 5 !== 0) return redirect()->route('home');
+        return view('feedback');
+    }
+
+    public function handleFeedback(Request $request)
+    {
+        if (!Auth::check()) return response()->json([
+            'status' => 0,
+            'data' => 'Không có quyền'
+        ], 500);
+
+        $user = Auth::user();
+
+        if (Transactions::where([
+            ['userId', $user->id],
+            ['transactionType', 1],
+            ['status', 1]
+        ])->count() % 5 !== 0) return response()->json([
+            'status' => 0,
+            'data' => 'Lượt mua của bạn chưa đủ để thêm đánh giá'
+        ], 500);
+
+        $rating = new Feedbacks();
+        $rating->userId = $user->id;
+        $rating->stars = $request->stars;
+        $rating->comment = $request->message;
+        $rating->status = 1;
+        $rating->product = $request->product;
+        $rating->save();
+
+        return response()->json([
+            'status' => 1,
+            'data' => 'Thêm đánh giá thành công!'
+        ]);
     }
 }

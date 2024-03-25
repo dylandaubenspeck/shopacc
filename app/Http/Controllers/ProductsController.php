@@ -119,7 +119,12 @@ class ProductsController extends Controller
 
             return response()->json([
                 'status' => 1,
-                'data' => $returnedAccount['data']
+                'data' => $returnedAccount['data'],
+                'rateable' => Transactions::where([
+                        ['userId', $user->id],
+                        ['transactionType', 1],
+                        ['status', 1]
+                ])->count() % 5 !== 0
             ]);
 
         } catch (\Exception $e)

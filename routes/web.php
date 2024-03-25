@@ -17,7 +17,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [\App\Http\Controllers\PagesController::class, 'profileView'])->name('profile');
     Route::get('/level', [\App\Http\Controllers\UtilsController::class, 'levelView'])->name('level');
     Route::post('/claimReward', [\App\Http\Controllers\UtilsController::class, 'claimReward'])->name('level.claim');
+
+    Route::get('/createFeedback', [\App\Http\Controllers\UtilsController::class, 'feedbackView'])->name('feedbacks.create');
+    Route::post('/createFeedback', [\App\Http\Controllers\UtilsController::class, 'handleFeedback'])->name('feedbacks.create.post');
 });
 
 Route::middleware([\App\Http\Middleware\AdminCheck::class])->group(function () {
@@ -53,6 +56,9 @@ Route::middleware([\App\Http\Middleware\AdminCheck::class])->group(function () {
 
     Route::get('/admin/levels', [\App\Http\Controllers\AdminController::class, 'levelsView'])->name('admin.levels');
     Route::get('/admin/levels/new', [\App\Http\Controllers\AdminController::class, 'addLevelView'])->name('admin.levels.new');
+
+    Route::get('/admin/topup', [\App\Http\Controllers\AdminController::class, 'topupView'])->name('admin.topup');
+
 });
 
 Route::get('/loginWith/discord', function () {
