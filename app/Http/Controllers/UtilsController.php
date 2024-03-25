@@ -76,6 +76,66 @@ class UtilsController extends Controller
         }
     }
 
+    public static function topupDiscordNotify(string $message)
+    {
+        try {
+            $client = new Client();
+            $token = self::getSetting('topupDiscordWebhook');
+            $response = $client->post($token['data'], [
+                'json' => [
+                    'embeds' => [
+                        [
+                            "title" => "User nạp tiền thành công",
+                            "description" => $message,
+                            "color" => hexdec("503a78"),
+                        ]
+                    ]
+                ]
+            ]);
+            return [
+                'status' => 1,
+                'data' => $response->getBody()->getContents()
+            ];
+        } catch (\Exception $e)
+        {
+            Log::error(__FILE__ . ' - ' . __FUNCTION__ . ' - ' . json_encode($e));
+            return [
+                'status' => 0,
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
+    public static function orderDiscordNotify(string $message)
+    {
+        try {
+            $client = new Client();
+            $token = self::getSetting('orderDiscordWebhook');
+            $response = $client->post($token['data'], [
+                'json' => [
+                    'embeds' => [
+                        [
+                            "title" => "User mua hàng thành công",
+                            "description" => $message,
+                            "color" => hexdec("b86e69"),
+                        ]
+                    ]
+                ]
+            ]);
+            return [
+                'status' => 1,
+                'data' => $response->getBody()->getContents()
+            ];
+        } catch (\Exception $e)
+        {
+            Log::error(__FILE__ . ' - ' . __FUNCTION__ . ' - ' . json_encode($e));
+            return [
+                'status' => 0,
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
     public static function countStock($name)
     {
         try {

@@ -117,6 +117,8 @@ class ProductsController extends Controller
                 'result' => $returnedAccount['data']
             ]);
 
+            UtilsController::orderDiscordNotify('User: ' . $user->username . ' | Vừa mua loại account: ' . $product->stockName . ' | Xử lí thành công vào lúc: ' . Carbon::now()->timezone('Asia/Ho_Chi_Minh'));
+
             return response()->json([
                 'status' => 1,
                 'data' => $returnedAccount['data'],

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topup;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -189,6 +190,8 @@ class TopupController extends Controller
             }
             $toupRequest->save();
             DB::commit();
+            $user = User::where('id', $toupRequest->userId)->first();
+            UtilsController::topupDiscordNotify('User: ' . $user->username . ' | Nạp: ' . number_format($toupRequest->amount) . 'đ | Hệ thống xử lí thành công vào: '. Carbon::now()->timezone('Asia/Ho_Chi_Minh'));
             return response()->json([
                 'status' => 1,
                 'data' => 'OK'
