@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $item->created_at }}</td>
                         <td>{{ $item->id }}</td>
-                        <td>{{ \App\Models\User::where('id', $item->userId)->first()->username ?? 'User bị xoá.' }}</td>
+                        <td>{{ \App\Models\User::where('id', $item->userId)->first()->username ?? 'Khách Discord' }}</td>
                         <td>{{ $item->transactionType == 2 ? 'Nạp tiền' : 'Mua account' }}</td>
                         <td>{{ number_format($item->amount) }}</td>
                         <td>
@@ -32,10 +32,6 @@
                             </select>
                         </td>
                         <td>{{ $item->result }}</td>
-                        <td>
-                            <button type="button" class="btn btn-primary edit" data-id="{{ $item->id }}">Sửa</button>
-                            <button type="button" class="btn btn-danger delete" data-id="{{ $item->id }}">Xoá</button>
-                        </td>
                     </tr>
                 @endforeach
                 </tbody>
