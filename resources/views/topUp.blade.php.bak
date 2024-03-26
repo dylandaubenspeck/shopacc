@@ -1,11 +1,146 @@
 @extends('layouts.guest')
+@section('head')
+    <link rel="stylesheet" href="https://alecrios.github.io/image-zoom-js/demo/css/image-zoom.css">
+    <style>
+        input {
+            border-color: #ff9494ff;
+
+            box-shadow: 0 0 0 2px #ff9494ff;
+
+        }
+
+        #mainContent {
+
+            display: flex;
+            flex-direction: colum;
+            justify-content: center;
+            background: linear-gradient(rgba(255, 163, 163, 0.3), rgb(243, 244, 246)), url(https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg);
+        }
+
+        .childContent {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .leftContent {
+            margin-right: 20px;
+            background-color: rgb(252, 252, 252);
+            width: 500px;
+            max-height: 700px;
+            text-align: center;
+
+        }
+
+        .rightContent {
+            margin-left: 20px;
+            background-color: rgb(252, 252, 252);
+            width: 500px;
+            height: 700px;
+            text-align: left;
+
+        }
+
+        .content {
+            /* margin-right: 60px; */
+            border-radius: 10px;
+            border: 3px solid #ff9494ff;
+            margin-top: 40px;
+            margin-bottom: 45px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
+
+        }
+
+        .stk,
+        .bankMess,
+        .typeBank {
+            margin-top: 40px;
+            margin-left: 40px;
+        }
+
+        .typeBank {
+            margin-top: 100px;
+        }
+
+        .qr {
+            margin-top: 59px;
+            border: 3px solid rgb(163, 77, 77);
+        }
+
+        .step {
+            margin-top: 25px;
+        }
+
+        .bg-imageLeft {
+            background-image: url('img/owen.png');
+            background-size: cover;
+            background-position: center;
+            transform: translateX(-10%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .bg-imageRight {
+            background-image: url('img/chammbar.png');
+            background-size: cover;
+            transform: translateX(240%);
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 27%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        #contentChild {
+            justify-content: space-around;
+            display: flex;
+        }
+
+        @media (max-width: 800px) {
+            .backimg {
+                visibility: hidden;
+            }
+
+            .copy {
+                scale: 0.8;
+            }
+
+            .content {
+                margin: 0;
+                margin-top: 10px;
+                width: 100%;
+            }
+
+            #contentChild {
+                margin: 0;
+                flex-direction: column;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px); /* Di chuyển form lên trên một chút */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+@endsection
 @section('content')
 
-    <div id="mainContent" class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0" style='
-    background-color: #3b82f6;
-    background-image: linear-gradient(to top, rgb(33,58,98) 0%,rgba(0,0,0,0.6) 100%), url("https://preview.redd.it/help-need-grid-lines-gone-v0-ujtagkb2j6z91.png?width=640&crop=smart&auto=webp&s=19bb4f9fe1cf0b24af31b5e08d0723f1fac9e974");
-    background-repeat: repeat;
-    '>
+    <div id="mainContent" class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div class="bg-imageLeft"></div>
+        <div class="bg-imageRight"></div>
 
         <div class="mainContent1">
                 <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto w-96">
@@ -19,29 +154,20 @@
                         </select>
 
                         <button
-                            class="w-full h-12 px-6 text-white transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700 mt-6" id="submitBtn">
-                            <span class="flex justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 my-auto">
-  <path fill-rule="evenodd" d="M3 4.875C3 3.839 3.84 3 4.875 3h4.5c1.036 0 1.875.84 1.875 1.875v4.5c0 1.036-.84 1.875-1.875 1.875h-4.5A1.875 1.875 0 0 1 3 9.375v-4.5ZM4.875 4.5a.375.375 0 0 0-.375.375v4.5c0 .207.168.375.375.375h4.5a.375.375 0 0 0 .375-.375v-4.5a.375.375 0 0 0-.375-.375h-4.5Zm7.875.375c0-1.036.84-1.875 1.875-1.875h4.5C20.16 3 21 3.84 21 4.875v4.5c0 1.036-.84 1.875-1.875 1.875h-4.5a1.875 1.875 0 0 1-1.875-1.875v-4.5Zm1.875-.375a.375.375 0 0 0-.375.375v4.5c0 .207.168.375.375.375h4.5a.375.375 0 0 0 .375-.375v-4.5a.375.375 0 0 0-.375-.375h-4.5ZM6 6.75A.75.75 0 0 1 6.75 6h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75A.75.75 0 0 1 6 7.5v-.75Zm9.75 0A.75.75 0 0 1 16.5 6h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75ZM3 14.625c0-1.036.84-1.875 1.875-1.875h4.5c1.036 0 1.875.84 1.875 1.875v4.5c0 1.035-.84 1.875-1.875 1.875h-4.5A1.875 1.875 0 0 1 3 19.125v-4.5Zm1.875-.375a.375.375 0 0 0-.375.375v4.5c0 .207.168.375.375.375h4.5a.375.375 0 0 0 .375-.375v-4.5a.375.375 0 0 0-.375-.375h-4.5Zm7.875-.75a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm6 0a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75ZM6 16.5a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm9.75 0a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm-3 3a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm6 0a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Z" clip-rule="evenodd" />
-</svg>
-
-
-
-
-                            <span class="my-auto ml-2">Tạo lệnh nạp tiền</span>
-                        </span>
+                            class="w-full h-12 px-6 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800 mt-6" id="submitBtn">
+                            Tạo Mã QR
                         </button>
                     </form>
                 </div>
         </div>
 
         <div id="contentChildTwo" style="display: none" class="maincontent2">
-            <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+            <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-center items-center">
                     <img id="qrCode" class="object-cover max-w-full max-h-full" style="width: 70%" />
                 </div>
                 <div class="mt-6">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 text-center my-3">Thông tin chuyển khoản</h5>
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white text-center my-3">Thông tin chuyển khoản</h5>
                     <p class="text-center text-sm text-gray-500 truncate dark:text-gray-400">
                         ( Bấm vào thông tin để copy )
                     </p>
@@ -50,12 +176,12 @@
                             <div class="flex items-center">
 
                                 <div class="flex-1 min-w-0 ms-4">
-                                    <p class="text-sm font-medium text-gray truncate">
+                                    <p class="text-sm font-medium text-gray truncate dark:text-white">
                                         Ngân hàng
                                     </p>
 
                                 </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                                     MB Bank
                                 </div>
                             </div>
@@ -65,12 +191,12 @@
                                 <div class="flex items-center">
 
                                     <div class="flex-1 min-w-0 ms-4">
-                                        <p class="text-sm font-medium text-gray truncate">
+                                        <p class="text-sm font-medium text-gray truncate dark:text-white">
                                             Số tiền
                                         </p>
 
                                     </div>
-                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 copyable" id="sotien">
+                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white copyable" id="sotien">
                                     </div>
                                 </div>
                             </li>
@@ -79,12 +205,12 @@
                             <div class="flex items-center">
 
                                 <div class="flex-1 min-w-0 ms-4">
-                                    <p class="text-sm font-medium text-gray truncate">
+                                    <p class="text-sm font-medium text-gray truncate dark:text-white">
                                         Tên TK:
                                     </p>
 
                                 </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900 copyable" id="tentk">
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white copyable" id="tentk">
                                 </div>
                             </div>
                         </li>
@@ -93,12 +219,12 @@
                             <div class="flex items-center">
 
                                 <div class="flex-1 min-w-0 ms-4">
-                                    <p class="text-sm font-medium text-gray-900 truncate">
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                         Số TK:
                                     </p>
 
                                 </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900 copyable" id="sotk">
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white copyable" id="sotk">
                                 </div>
                             </div>
                         </li>
@@ -107,17 +233,17 @@
                             <div class="flex items-center">
 
                                 <div class="flex-1 min-w-0 ms-4">
-                                    <p class="text-sm font-medium text-gray truncate">
+                                    <p class="text-sm font-medium text-gray truncate dark:text-white">
                                         Nội dung:
                                     </p>
 
                                 </div>
-                                <div class="inline-flex items-center text-base font-semibold text-gray-900 copyable" id="noidung">
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white copyable" id="noidung">
                                 </div>
                             </div>
                         </li>
                     </ul>
-                    <h5 class="text-xl font-bold leading-none text-red-400 text-center my-3">Lưu ý!</h5>
+                    <h5 class="text-xl font-bold leading-none text-red-400 dark:text-white text-center my-3">Lưu ý!</h5>
                     <ul>
                         <li>- Đây là hệ thống tự động.</li>
                         <li>- Không chịu trách nhiệm khi chuyển nhiều/ít hơn số tiền.</li>
