@@ -1,27 +1,154 @@
-
-
-#mainContent { 
-    display: flex;
-    gap: 50px;
-    justify-content:center;
-    background: linear-gradient(rgba(255, 163, 163, 0.3), rgb(243, 244, 246)), url(https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg);
+body{ 
+    width: 100%;
+   background-image: url(/img/back.jpg);
     background-size: cover;
     background-blend-mode: multiply;
 }
+section {
+    width: 100%;
+}
 
-.allRating, .uRating {
+.form {
+    width: 100%;
+}
+
+.flex-image-container {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -320px);
+    width: 100%;
+}
+
+.img-responsive-wrap {
+    position: relative;
+    max-width: 100%;
+    width: 446px;
+    
+}
+
+.formLogin .character-image {
+    display: block;
+    position: relative;
+    z-index: 222;
+    top: 130%;
+    width: 100%;
+    left: 42%;
+    scale:1.2;
+    pointer-events: none;
+}
+
+.form-login:hover {
+    transform: scale(1.2);
+    /* Hiệu ứng phóng to khi hover */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    /* Bóng đổ khi hover */
+  }
+
+.character-image  { 
+    transform: translateX(15%) translateY(-3%);
+}
+.loginButton {
+    width: 50%;
+    padding: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
     border-radius: 5px;
-    width: 500px;
-    padding: 40px;
+    background-color: #ff9494ff;
+
+}
+
+.loginButton:hover {
+    background-color: #ff9494;
+    box-shadow: 0px 8px 15px rgba(244, 28, 28, 0.2);
+}
+
+.custom-button {
+    background: linear-gradient(to left, rgba(255, 102, 102, 0.7), transparent) 1;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.form-login {
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+}
+#remember:checked {
+    background-color: rgb(252, 87, 115);
+    border: rgba(255, 102, 102, 0.7);
+}
+
+#loginAnother {
+    display: flex;
+    justify-content: space-around;
 }
 
 
-textarea:focus {
-    border-color: #ff0000; /* Màu border khi focus */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
+@media (max-width: 800px) {
+    .character-image{ 
+        visibility: hidden ;
+    }
+
+}
+
+#email, #password  {
+    border-color:#4fa9abff;
+}
+
+.star-rating input[type="radio"] {
+    display: none; /* Ẩn radio button */
+}
 
 
+.star-rating {
+	white-space: nowrap;
+}
+.star-rating [type="radio"] {
+	appearance: none;
+}
+.star-rating i {
+	font-size: 1.2em;
+	transition: 0.3s;
+}
 
+.star-rating label:is(:hover, :has(~ :hover)) i {
+	transform: scale(1.35);
+	color: #fffdba;
+	animation: jump 0.5s calc(0.3s + (var(--i) - 1) * 0.15s) alternate infinite;
+}
+.star-rating label:has(~ :checked) i {
+	color: #faec1b;
+	text-shadow: 0 0 2px #ffffff, 0 0 10px #ffee58;
+}
 
+@keyframes jump {
+	0%,
+	50% {
+		transform: translatey(0) scale(1.35);
+	}
+	100% {
+		transform: translatey(-15%) scale(1.35);
+	}
+}

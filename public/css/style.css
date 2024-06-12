@@ -1,3 +1,12 @@
+@font-face {
+    font-family: customPoppins;
+    src: url('/fonts/DesignerVN-Poppins/DesignerVN-Poppins-Regular.ttf') format('truetype');
+  }
+
+* {
+    font-family: 'customPoppins', sans-serif;
+}
+
 .backdrop-blur {
     backdrop-filter: blur(10px);
 }
@@ -37,15 +46,10 @@
 }
 
 .hover\:bright-outline:hover::before {
-    border-color: rgba(255, 102, 102, 0.7); /* Adjust the color and opacity as needed */
+    border-color: rgba(255, 102, 102, 0.7);
+    /* Adjust the color and opacity as needed */
 }
 
-.header {
-    min-height: 100%;
-    background: linear-gradient(rgba(255, 163, 163, 0.3), rgb(243, 244, 246)), url(https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg);
-    background-size: cover;
-    background-blend-mode: multiply;
-}
 
 .glare-border {
     border-right: transparent;
@@ -55,3 +59,59 @@
     border-image: linear-gradient(to left, rgba(255, 102, 102, 0.7), transparent) 1;
 }
 
+.cardLeft,
+.cardRight {
+    height: 450px;
+}
+
+.typeAcc {
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 120px;
+}
+
+.login{
+
+}
+
+header {
+    display: flex;
+
+    background-color: rgb(18, 18, 18);
+}
+.logAndres{
+    margin-top: 3px;
+}
+.item_header{
+    border-bottom:1px solid  transparent ;
+    padding: 10px;
+    border-radius: 2px;
+    transition: all 0.5s ease-out allow-discrete;
+
+}
+ .item_header:hover {
+    border-bottom:1px red solid;
+    background-color: rgba(255, 255, 255, 0.253);
+  scale: 1.1;
+ }
+
+.rainbow_text_animated {
+    background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 6s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}

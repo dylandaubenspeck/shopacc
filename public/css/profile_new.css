@@ -1,0 +1,320 @@
+.logAndres {
+    display: flex;
+}
+
+.header {
+    background-image: url(/img/download.jpg);
+    background-position: 355px 0px;
+    height: 600px;
+}
+
+.intro {
+    margin-left: 10px;  
+    text-align: left;
+}
+
+:root {
+    --rating-size: 10rem;
+    --bar-size: 1rem;
+    --background-color: #e7f2fa;
+    --rating-color-default: #2980b9;
+    --rating-color-background: #c7e1f3;
+    --rating-color-good: #27ae60;
+    --rating-color-meh: #f1c40f;
+    --rating-color-bad: #e74c3c;
+  }
+  
+  /* Rating item */
+  .rating {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    overflow: hidden;
+    
+    background: var(--rating-color-default);
+    color: var(--rating-color-default);
+    width: var(--rating-size);
+    height: var(--rating-size);
+  
+    /* Basic style for the text */
+    font-size: calc(var(--rating-size) / 3);
+    line-height: 1;
+  }
+  
+  /* Rating circle content */
+  .rating span {
+    position: relative;
+    display: flex;
+    font-weight: bold;
+    z-index: 2;
+  }
+  
+  .rating span small {
+    font-size: 0.5em;
+    font-weight: 900;
+    align-self: center;
+  }
+  
+  /* Bar mask, creates an inner circle with the same color as thee background */
+  .rating::after {
+    content: "";
+    position: absolute;
+    inset: var(--bar-size);
+    background: var(--background-color);
+    border-radius: inherit;
+    z-index: 1;
+  }
+  
+  /* Bar background */
+  .rating::before {
+    content: "";
+    position: absolute;
+    inset: var(--bar-size);
+    border-radius: inherit;
+    box-shadow: 0 0 0 1rem var(--rating-color-background);
+    z-index: -1;
+  }
+  
+  /* Classes to give different colors to ratings, based on their score */
+  .rating.good {
+    background: var(--rating-color-good);
+    color: var(--rating-color-good);
+  }
+  
+  .rating.meh {
+    background: var(--rating-color-meh);
+    color: var(--rating-color-meh);
+  }
+  
+  .rating.bad {
+    background: var(--rating-color-bad);
+    color: var(--rating-color-bad);
+  }
+  
+
+#mainContent {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+  
+    width: 100%;
+}
+hr {
+    height: 1px;
+    border: none;
+    border-top: 1px solid #ffffff5c; /* Đặt màu và kiểu đường kẻ */
+    margin: 20px 0; /* Đặt khoảng cách trên và dưới đường kẻ */
+}
+
+.textIntro {
+    color: rgb(237, 233, 225);
+    font-size: 15;
+    padding-left: 30px; /* Cách lề bên trái */
+    padding-right: 30px; /* Cách lề bên phải */
+}
+
+.top {
+    border-radius: 10px;
+    width: 100%;
+    height: 300px;
+  background-image: url(/img/omwn.jpg);
+    margin-bottom: 10px;
+}
+
+.body {
+   height: 100%;
+    background-image: url(/img/back.jpg);
+    background-size: cover;
+    top: 0;
+    gap: 10px;
+    width: 100%;
+    display: flex;
+ 
+}
+
+.bodyLeft {
+    text-align: left;
+    border-radius: 10px;
+    width: 50%;
+
+    flex: 1;
+    background-color: rgba(108, 49, 49, 0.705); /* Màu trắng với độ trong suốt 50% */
+    backdrop-filter: blur(5px);
+}
+
+.bodyRight {
+    border-radius: 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column; 
+    width: 50%;
+    height: 100%;
+    flex: 2;
+}
+
+.bodyTop{ 
+
+    height: 100%;
+    background-color: rgba(108, 49, 49, 0.705); /* Màu trắng với độ trong suốt 50% */
+    backdrop-filter: blur(5px);
+
+
+}
+
+.bodyBot{
+  width: 100%;
+  height: 100%;
+    background-color: rgba(108, 49, 49, 0.705); /* Màu trắng với độ trong suốt 50% */
+    backdrop-filter: blur(5px);
+
+}
+
+
+.avt { 
+    border-radius: 14px;
+    margin: auto;
+    margin-top: 200px;
+    justify-content: center;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2); /* Màu trắng với độ trong suốt 50% */
+    backdrop-filter: blur(5px); /* Áp dụng hiệu ứng blur */
+
+}
+
+.avt-img{ 
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    border: 2px solid;
+    transform: translateY(-80px);
+    margin: auto;
+    height: 120px;
+    width: 120px;
+
+}
+
+.nameProfile { 
+    margin-top: 4px;
+    font-family: "Phudu", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 20px;
+    color: white;
+}
+
+.avtNav {
+    font-family: "Phudu", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.introText { 
+
+    font-family: "Phudu", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 30px;
+    border-bottom: 1px solid black;
+
+}
+
+.item {
+    padding: 3px;
+    border-radius: 2px;
+    color: rgb(237, 233, 225);
+
+   
+}
+
+.checkout .buyacc {
+    background-color: black;
+}
+
+.container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+    small {
+      font-size: 0.5em;
+    }
+  }
+  
+  .responsive-table {
+    li {
+      border-radius: 3px;
+      padding: 25px 30px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+    .table-header {
+        color: black;
+      background-color: #d21b4c;
+      font-size: 14px;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .table-row {
+      background-color: rgb(237, 233, 225);
+      box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+    }
+    .col-1 {
+      flex-basis: 10%;
+    }
+    .col-2 {
+      flex-basis: 40%;
+    }
+    .col-3 {
+      flex-basis: 25%;
+    }
+    .col-4 {
+      flex-basis: 25%;
+    }
+    
+    @media all and (max-width: 767px) {
+      .table-header {
+        display: none;
+      }
+      .table-row{
+        
+      }
+      li {
+        display: block;
+      }
+      .col {
+        
+        flex-basis: 100%;
+        
+      }
+      .col {
+        display: flex;
+        padding: 10px 0;
+        &:before {
+          color: #6C7A89;
+          padding-right: 10px;
+          content: attr(data-label);
+          flex-basis: 50%;
+          text-align: right;
+        }
+      }
+    }
+  }

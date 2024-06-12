@@ -1,215 +1,332 @@
+.backdrop-blur {
+  backdrop-filter: blur(10px);
+}
+
+.swiper-container {
+  width: 100%;
+  height: 300px;
+  /* Adjust height as needed */
+}
+hr {
+  height: 10px; /* Đặt chiều cao của đường kẻ ngang */
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-img {
+  height: 100%;
+  width: 50rem !important;
+  object-fit: cover;
+}
+
+.hover\:bright-outline {
+  position: relative;
+}
+
+.hover\:bright-outline::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 5px solid transparent;
+  border-radius: 0.8rem;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.hover\:bright-outline:hover::before {
+  border-color: rgba(255, 102, 102, 0.7);
+  /* Adjust the color and opacity as needed */
+}
+
+
+.glare-border {
+  border-right: transparent;
+  border-top: transparent;
+  border-left: transparent;
+  border-bottom: 2px solid !important;
+  border-image: linear-gradient(to left, rgba(255, 102, 102, 0.7), transparent) 1;
+}
+
+.cardLeft,
+.cardRight {
+  height: 450px;
+}
+
+.typeAcc {
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 120px;
+}
+
 input {
-    border-color: #ff9494ff;
-    box-shadow: 0 0 0 2px #ff9494ff;
-  }
+  border: 2px solid;
+  border-image: linear-gradient(to left, rgba(255, 102, 102, 0.7), transparent) 1;
+}
 
-  #mainContent {
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+#mainContent {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
-  .box {
-    display: flex;
-    justify-content: center;
-  }
+.box {
+  display: flex;
+  justify-content: center;
+}
 
-  .itemProfile {
-    font-size: 30px;
-    margin-top: 10px;
-  }
+.itemProfile {
+  font-size: 30px;
+  margin-top: 10px;
+}
 
-  .leftContent {
-    margin-right: 20px;
-    flex: 50%;
-    align-items: center;
-    background-color: rgb(252, 252, 252);
-    width: 600px;
-    max-height: 450px;
-    text-align: center;
-    z-index: -10;
-    color: #6b7280ff;
-  }
+.leftContent {
+  background-image: url(img/reyna.png);
+  background-position: -33% 15%;
+  margin-right: 20px;
+  flex: 50%;
+  align-items: center;
+  width: 600px;
+  max-height: 450px;
+  text-align: center;
+  z-index: 100;
+  color: #6b7280ff;
+}
 
-  .rightContent {
-    flex: 50%;
-    margin-left: 20px;
-    background-color: rgb(252, 252, 252);
-    width: 600px;
-    height: 450px;
-    text-align: center;
-    z-index: -10;
-    color: #6b7280ff;
-  }
 
-  .bottom {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 40px;
-  }
-  .orderHistory {
-    display: flex;
-    flex-direction: column;
-  }
+.rightContent {
+  background-image: url(img/right.jpg);
+  background-size: cover;
+  background-size: 1000px;
+  background-position: -33% 15%;
+  background-repeat: no-repeat;
+  flex: 50%;
+  margin-left: 20px;
+  width: 600px;
+  height: 450px;
+  text-align: center;
+  z-index: 100;
+  color: #6b7280ff;
+}
 
-  .orderHistory_child {
-  }
+.rightContent,
+.leftContent {
+  background-color: rgba(255, 255, 255, 0.764);
+  transition: transform 0.3s ease;
+}
 
-  .depositHistory_child {
-    margin-bottom: 35px;
-  }
+.leftContent:hover,
+.rightContent:hover {
+  transform: scale(1.05);
+  /* Hiệu ứng phóng to khi hover */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  /* Bóng đổ khi hover */
+}
 
-  .itemPass {
-    margin-top: 10px;
-  }
 
-  .itemTd {
-    padding: 10px;
-    text-align: center;
-  }
 
-  .headerHistory {
-    border-radius: 3px;
-    border: 3px solid #ff9494ff;
-    text-align: center;
-    height: 50px;
-    width: 300px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 15%;
-    background-color: rgb(252, 252, 252);
-    color: #6b7280ff;
-  }
+.bottom {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
 
-  .newPass {
-    margin-top: 20px;
-  }
+.orderHistory {
+  display: flex;
+  flex-direction: column;
+}
 
-  .history {
-    color: #6b7280ff;
-    border-radius: 3px;
-    margin: auto;
-    margin-top: 10px;
-    width: 70%;
-    height: 100px;
-    background-color: rgb(252, 252, 252);
-    text-align: left;
-    border: 3px solid #ff9494ff;
-  }
+.orderHistory_child {}
 
-  .content {
-    border-radius: 10px;
-    border: 3px solid #ff9494ff;
-    margin-top: 40px;
-    margin-bottom: 45px;
-  }
+.depositHistory_child {
+  margin-bottom: 35px;
+}
 
-  .inputPass {
-    border: 3px solid;
-    border-image: linear-gradient(
-        to left,
-        rgba(255, 102, 102, 0.7),
-        transparent
-      )
-      1;
-    width: 200px;
-    height: 30px;
-    z-index: 10;
-  }
+.itemPass {
+  margin-top: 10px;
+}
 
-  .itemID {
-    margin-left: 30px;
-  }
+.itemTd {
+  padding: 10px;
+  text-align: center;
+}
 
-  .itemProfile_Child {
-    display: inline-block;
-    width: 150px;
-    text-align: left;
-    margin-right: 10px;
-    font-size: 17px;
-    font-weight: bold;
-  }
+.headerHistory {
+  border-radius: 3px;
+  border: 3px solid #ff9494ff;
+  text-align: center;
+  height: 50px;
+  width: 300px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15%;
+  background-color: rgb(252, 252, 252);
+  color: #6b7280ff;
+}
 
-  .itemProfile_Child1 {
-    font-weight: normal;
-    font-size: 20px;
-    color: #6b7280ff;
-  }
+.newPass {
+  margin-top: 20px;
+}
 
-  .profile {
-    margin-top: 10%;
-    margin-bottom: 5%;
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    color: #6b7280ff;
-  }
+.history {
+  border: 2px solid; border-image: linear-gradient(to left, rgba(255, 102, 102, 0.7), transparent) 1;
+  color: #6b7280ff;
+  border-radius: 3px;
+  margin: auto;
+  margin-top: 10px;
+  width: 70%;
+  height: 100px;
+  background-color: rgb(252, 252, 252);
+  text-align: left;
+  border: 3px solid #ff9494ff;
+}
 
-  .changedPass {
-    margin-top: 10%;
-    margin-bottom: 5%;
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    color: #6b7280ff;
-  }
+.content {
+  border-radius: 10px;
+  border: 3px solid #ff9494ff;
+  margin-top: 40px;
+  margin-bottom: 45px;
+}
 
-  .errorRePass .errorPass {
-    font-size: 10px;
-  }
 
-  .bg-imageLeft {
-    background-image: url("img/owen.png");
-    background-size: cover;
-    background-position: center;
-    transform: translateX(-10%);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 30%;
-    height: 100%;
-    z-index: -999;
-    pointer-events: none;
-    opacity: 0.7;
-  }
 
-  .bg-imageRight {
-    background-image: url("img/chammbar.png");
-    background-size: cover;
-    transform: translateX(270%);
-    background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 27%;
-    height: 100%;
-    z-index: -2;
-    opacity: 0.7;
-  }
+.inputPass {
+  border: 3px solid;
+  border-image: linear-gradient(to left,
+      rgba(255, 102, 102, 0.7),
+      transparent) 1;
+  width: 200px;
+  height: 30px;
+  z-index: 10;
+}
 
-  .childContent{
-display: flex;
-flex-direction: row;
+.itemID {
+  margin-left: 30px;
+}
+
+body {
+  background-image: url(img/full.jpg);
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+
+.itemProfile_Child {
+  border: 2px solid;
+  border-image: linear-gradient(to left, rgba(255, 102, 102, 0.7), transparent) 1;
+  padding: 10px;
+
+  color: Black;
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+  margin-right: 10px;
+  font-size: 19px;
+  font-weight: 900;
+
+
+}
+
+.itemProfile_Child1 {
+  border: none;
+  text-align: center;
+  border-radius: 100px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: rgba(248, 248, 248, 0.758);
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(28, 33, 32);
+
+}
+
+.profile {
+  margin-top: 10%;
+  margin-bottom: 5%;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  color: #6b7280ff;
+}
+
+.changedPass {
+  margin-top: 10%;
+  margin-bottom: 5%;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  color: #6b7280ff;
+}
+
+.errorRePass .errorPass {
+  font-size: 10px;
+}
+
+.header {
+  min-height: 100%;
+  background: linear-gradient(rgba(255, 163, 163, 0.3), rgb(243, 244, 246)), url(img/1078458.png);
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
+.childContent {
+  display: flex;
+  flex-direction: row;
+}
+
+.itemProfile_Child_r {
+  
+  padding: none;
+  font-size: 15px;
 }
 
 @media (max-width: 800px) {
-input { 
-scale: 0.8;
+  input {
+    scale: 0.8;
+  }
+
+
+
+  .childContent {
+    margin: 0;
+    flex-direction: column;
+  }
+
+  .bgimg {
+    visibility: hidden;
+  }
 }
-.rightContent, .leftContent{
-width: 100%;
-margin: 0;
-margin-top: 10px;
+
+p {
+
+  font-size: 20vw;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
 }
-.childContent {
-margin: 0;
-flex-direction: column;
-}
-.bgimg {
-visibility: hidden;
-}
+
+.fancy {
+  font-size: 30px;
+
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    background-image:
+      url("data:image/svg+xml,%3Csvg width='2250' height='900' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cpath fill='%2300A080' d='M0 0h2255v899H0z'/%3E%3Ccircle cx='366' cy='207' r='366' fill='%2300FDCF'/%3E%3Ccircle cx='1777.5' cy='318.5' r='477.5' fill='%2300FDCF'/%3E%3Ccircle cx='1215' cy='737' r='366' fill='%23008060'/%3E%3C/g%3E%3C/svg%3E%0A");
+    background-size: 110% auto;
+    background-position: center;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+
 }

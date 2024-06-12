@@ -1,0 +1,128 @@
+@extends('layouts.guest')
+@section('head')
+    <link rel="stylesheet" href="{{ asset('/css/ticket.css') }}">
+@endsection
+@section('content')
+    <section style='
+  background-image: url(/img/back3.jpg);
+    background-repeat: repeat;
+    background-size: cover;
+    '>
+        <div class="py-8 mx-auto max-w-screen-2xl lg:py-16 p-3 flex h-screen justify-center items-center">
+            <div class="md:flex">
+                @php($statuses = [
+                    '0' => 'Tất cả ticket',
+                    '1' => 'Đã trả lời',
+                    '2' => 'Đã giải quyết',
+                ])
+                <ul class="flex-column space-y space-y-4 text-sm font-medium text-gray-500 md:me-4 mb-4 md:mb-0">
+                    @foreach($statuses as $key => $item)
+                        @if(request()->segment(2) == $key)
+                            <li>
+                                <a style="background-color: rgb(255, 69, 84);"
+                                   class="inline-flex items-center px-4 py-3 text-white bg-blue-700 rounded-lg active w-full"
+                                   aria-current="page">
+                                    <svg class="w-6 h-6 me-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                                    </svg>
+
+                                    {{ $item }}
+                                </a>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('ticket.list', ['status' => $key]) }}"
+                                   class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-gray-50 hover:bg-gray-100 w-full ">
+                                    <svg class="w-4 h-4 me-2 text-gray-500" aria-hidden="true"
+                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                                        <path
+                                            d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                                    </svg>
+                                    {{ $item }}
+                                </a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+
+                <div class="p-6 bg-gray-50 text-medium text-gray-500 rounded-lg w-full">
+                    <span filter-content="" id="title"> TICKET </span>
+                    <div class="relative overflow-x-auto">
+                        <div
+                            class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4">
+                            <a style="background-color: rgb(255, 69, 84);" href="http://127.0.0.1:8000/ticketsCreate"
+                               type="button"
+                               class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 me-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+
+                                Tạo ticket mới
+                            </a>
+                        </div>
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Tên
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Trạng thái
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Hành động
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($data as $item)
+                                <tr class="bg-white border-b hover:bg-gray-50">
+                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
+                                        <div class="ps-3">
+                                            <div class="text-base font-semibold">{{ $item->title }}</div>
+                                            <div class="font-normal text-gray-500">
+                                                {{ \Carbon\Carbon::createFromTimeStamp(strtotime($item->created_at))->diffForHumans() }}
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        @switch($item->status)
+                                            @case(0)
+                                                <div class="flex items-center">
+                                                    <div class="h-2.5 w-2.5 rounded-full bg-orange-500 me-2"></div> Chờ giải quyết
+                                                </div>
+                                                @break
+                                            @case(1)
+                                                <div class="flex items-center">
+                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Đã trả lời
+                                                </div>
+                                                @break
+                                            @case(2)
+                                                <div class="flex items-center">
+                                                    <div class="h-2.5 w-2.5 rounded-full bg-gray-500 me-2"></div> Đã xong
+                                                </div>
+                                                @break
+                                        @endswitch
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <a href="{{ route('ticket.view', ['id' => $item->id]) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Xem ticket</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                        <div class="flex justify-center mt-5">
+                            {{ $data->links('pagination::tailwind') }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+@endsection

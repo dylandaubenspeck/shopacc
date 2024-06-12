@@ -15,8 +15,8 @@ class PagesController extends Controller
             ['userId', \Illuminate\Support\Facades\Auth::user()->id],
             ['status', 1],
             ['transactionType', 1]
-        ])->orderBy('created_at', 'desc')->paginate(10);
-        $listTopup = Topup::where('userId', \Illuminate\Support\Facades\Auth::user()->id)->orderBy('created_at', 'desc')->paginate(10);
+        ])->orderBy('created_at', 'desc')->paginate(4);
+        $listTopup = Topup::where('userId', \Illuminate\Support\Facades\Auth::user()->id)->orderBy('created_at', 'desc')->paginate(4);
         return view('profile', ['transactions' => $listTransactions, 'topups' => $listTopup]);
     }
 }

@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/paymentHandle', [\App\Http\Controllers\TopupController::class, 'handleCallback'])->name('handleCallback');
 Route::post('/discordCallback', [\App\Http\Controllers\UtilsController::class, 'getDiscordAccont'])->name('discordCallback');
+Route::get('products/{product}', 'Api\ProductController@show')->name('products.show');

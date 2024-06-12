@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\MarketProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/topup', [\App\Http\Controllers\TopupController::class, 'topupView'])->name('topup');
     Route::post('/topup', [\App\Http\Controllers\TopupController::class, 'createPayment'])->name('topup.create');
+    Route::post('/thecaotopup', [\App\Http\Controllers\TopupController::class, 'storeThecao'])->name('topup.createThecao');
     Route::post('/buyAcount', [\App\Http\Controllers\ProductsController::class, 'buyOrder'])->name('buyOrder');
     Route::get('/profile', [\App\Http\Controllers\PagesController::class, 'profileView'])->name('profile');
     Route::get('/level', [\App\Http\Controllers\UtilsController::class, 'levelView'])->name('level');
@@ -34,6 +36,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/createFeedback', [\App\Http\Controllers\UtilsController::class, 'feedbackView'])->name('feedbacks.create');
     Route::post('/createFeedback', [\App\Http\Controllers\UtilsController::class, 'handleFeedback'])->name('feedbacks.create.post');
+
+    Route::get('/tickets/{status?}', [\App\Http\Controllers\TicketController::class, 'userTickets'])->name('ticket.list');
+    Route::get('/ticketsCreate/{transId?}', [\App\Http\Controllers\TicketController::class, 'createTicket'])->name('ticket.create');
+    Route::get('/ticketsView/{id}', [\App\Http\Controllers\TicketController::class, 'viewTicket'])->name('ticket.view');
+
+    Route::post('/ticketsUtils/{id}/sendMessage', [\App\Http\Controllers\TicketController::class, 'sendMessage'])->name('ticket.sendMessage');
+    Route::post('/createTicket', [\App\Http\Controllers\TicketController::class, 'handleCreateTicket'])->name('ticket.createTicket');
+    Route::post('/getMsg/{id?}/{latestId?}', [\App\Http\Controllers\TicketController::class, 'getTicketContent'])->name('ticket.getMessage');
 });
 
 Route::middleware([\App\Http\Middleware\AdminCheck::class])->group(function () {
@@ -61,6 +71,9 @@ Route::middleware([\App\Http\Middleware\AdminCheck::class])->group(function () {
 
 });
 
+
+
+
 Route::get('/loginWith/discord', function () {
     return Socialite::driver('discord')->redirect();
 })->name('login.discord');
@@ -77,4 +90,9 @@ Route::get('/discord/oauth', [\App\Http\Controllers\UtilsController::class, 'han
 Route::get('/google/oauth', [\App\Http\Controllers\UtilsController::class, 'handleGoogleLogin']);
 //Route::get('/facebook/oauth', [\App\Http\Controllers\UtilsController::class, 'handleFBLogin']);
 
+Route::get('/profileSeller', [MarketProfileController::class,'ProfileSeller']     ); 
+
+
+
 require __DIR__.'/auth.php';
+

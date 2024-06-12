@@ -72,4 +72,9 @@ class User extends Authenticatable
             ->orderBy('expNeeded', 'desc')
             ->first();
     }
+
+    public function balance()
+    {
+        return number_format($this->exp);
+    }
 }

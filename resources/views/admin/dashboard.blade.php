@@ -5,50 +5,64 @@
         <span></span> <i class="fa fa-caret-down"></i>
     </div>
 
-    <div class="row mt-3">
-        <div class="col-sm-4 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Tổng tiền</p>
-                    <h5 class="card-title" id="transactions">0</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Tổng account đã bán</p>
-                    <h5 class="card-title" id="buyOrder">0</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Tổng lượt mua</p>
-                    <h5 class="card-title" id="totalOrder">0</h5>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="grid grid-cols-5 gap-6 xl:grid-cols-1">
 
-    <div class="row mt-3">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Tổng số tiền người dùng đã nạp</p>
-                    <h5 class="card-title" id="topup">0</h5>
+        <div class="card mt-6">
+            <div class="card-body flex items-center">
+                <div class="px-3 py-2 rounded bg-indigo-500 text-white mr-3">
+                    <i class="fa-solid fa-cash-register"></i>
+                </div>
+                <div class="flex flex-col">
+                    <p>Tổng tiền</p>
+                    <h1 class="font-semibold"><span class="num-2" id="transactions">0</span></h1>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text">Tổng số tiền nạp đang chờ DUYỆT</p>
-                    <h5 class="card-title" id="topupAwait">0</h5>
+
+        <div class="card mt-6">
+            <div class="card-body flex items-center">
+                <div class="px-3 py-2 rounded bg-blue-500 text-white mr-3">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>                </div>
+                <div class="flex flex-col">
+                    <p>Tổng Account đã bán</p>
+                    <h1 class="font-semibold"><span class="num-2" id="buyOrder">0</span></h1>
                 </div>
             </div>
         </div>
+
+        <div class="card mt-6">
+            <div class="card-body flex items-center">
+                <div class="px-3 py-2 rounded bg-red-300 text-white mr-3">
+                    <i class="fa-solid fa-cart-shopping"></i>                </div>
+                <div class="flex flex-col">
+                    <p>Tổng lượt mua</p>
+                    <h1 class="font-semibold"><span class="num-2" id="totalOrder">0</span></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-6">
+            <div class="card-body flex items-center">
+                <div class="px-3 py-2 rounded bg-yellow-400 text-white mr-3">
+                    <i class="fa-solid fa-money-bill-wave"></i>                </div>
+                <div class="flex flex-col">
+                    <p>Tổng tiền nạp (CK + Thẻ cào)</p>
+                    <h1 class="font-semibold"><span class="num-2" id="topup">0</span></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-6">
+            <div class="card-body flex items-center">
+                <div class="px-3 py-2 rounded bg-green-400 text-white mr-3">
+                    <i class="fa-solid fa-vault"></i>                </div>
+                <div class="flex flex-col">
+                    <p>Tổng tiền chờ Duyệt (CK + Thẻ cào)</p>
+                    <h1 class="font-semibold"><span class="num-2" id="topupAwait">0</span></h1>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 

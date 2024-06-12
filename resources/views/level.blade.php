@@ -1,11 +1,16 @@
 @extends('layouts.guest')
+@section('head')
+    <link rel="stylesheet" href="{{ asset('/css/dailyDrop.css') }}">
+@endsection
 @section('content')
-    <div id="mainContent" class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0" style='
-    background-color: #3b82f6;
-    background-image: linear-gradient(to top, rgb(33,58,98) 0%,rgba(0,0,0,0.6) 100%), url("https://preview.redd.it/help-need-grid-lines-gone-v0-ujtagkb2j6z91.png?width=640&crop=smart&auto=webp&s=19bb4f9fe1cf0b24af31b5e08d0723f1fac9e974");
-    background-repeat: repeat;
-    '>
-        <div class="mainContent1">
+    <div id="mainContent" class=" flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div>
+            <img class="character-image" src="/img/text2.png" alt="">
+        </div>
+        <div class="btn mainContent1">
+            <div class="textEffect">
+            </div>
+
             <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto w-96">
                 @if(!empty(\Illuminate\Support\Facades\Auth::user()->level()))
                     <h5 class="mb-2 text-2xl tracking-tight text-gray-900">Hiện tại bạn
@@ -17,8 +22,8 @@
                         <div class="flex items-center justify-between my-5">
                             <span>{{ $currentLvl->levelName }}</span>
                             <div class="w-full bg-gray-200 h-4 rounded-full mx-4 relative">
-                                <div class="bg-blue-500 h-full rounded-full absolute left-0 top-0"
-                                     style="width: {{ (\Illuminate\Support\Facades\Auth::user()->exp / $nextLvl->expNeeded) * 100 }}%;"></div>
+                                <div class="bg-red-300 h-full rounded-full absolute left-0 top-0"
+                                     style="width: 0%;" id="levelbardiv" data-percent="{{ (\Illuminate\Support\Facades\Auth::user()->exp / $nextLvl->expNeeded) * 100 }}"></div>
                             </div>
                             <span>{{ $nextLvl->levelName }}</span>
                         </div>
@@ -64,6 +69,15 @@
                         phần thưởng hàng ngày rồi, còn chờ gì nữa mà không mua ngay nào!</p>
                 @endif
             </div>
+            <div style="z-index: 10;" class="rightNav">
+                <li>
+                    <div id="happy" class="icon" style="background-image: url({{ \Illuminate\Support\Facades\Auth::user()->level()->imgLink }});     background-position: center; background-size: unset">
+                        <strong>
+                            <img  alt="">
+                        </strong>
+                    </div>
+                </li>
+            </div>
         </div>
     </div>
 @endsection
@@ -71,6 +85,36 @@
 @section('authJs')
     <script>
         $(document).ready(function (e) {
+            function animateProgressBar(percent, duration) {
+                let currentWidth = 0;
+                const startTime = Date.now();
+                const endTime = startTime + duration;
+
+                const easeOut = t => {
+                    return 1 - Math.pow(1 - t, 2); // Ease-out function
+                };
+
+                const step = () => {
+                    const now = Date.now();
+                    const elapsedTime = now - startTime;
+                    const progress = elapsedTime / duration;
+                    const easedProgress = easeOut(progress);
+                    currentWidth = percent * easedProgress;
+                    $('#levelbardiv').css('width', `${currentWidth}%`);
+
+                    if (now < endTime) {
+                        requestAnimationFrame(step);
+                    }
+                };
+
+                step();
+            }
+            if ($('#levelbardiv'))
+            {
+                const percent = $('#levelbardiv').data("percent");
+                animateProgressBar(percent, 1000);
+            }
+
             if($('#cooldownTime').length > 0)
             {
                 const cooldownEl = $('#cooldownTime');
@@ -88,36 +132,70 @@
                 updateCooldown();
                 var cooldownInterval = setInterval(updateCooldown, 1000);
             }
+
+            $('#confirmBuyButton').click(function (e) {
+                $(this).attr('disabled', '')
+                const btn = $(this)
+                const typeAcc = $(this).data('productid');
+                $.ajax({
+                    url: "{{ route('level.claim') }}",
+                    type: 'post',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        Swal.fire({
+                            title: "Nhận quà hàng ngày thành công!",
+                            text: data.data,
+                            icon: "success"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload()
+                            }
+                        });
+                    },
+                    error: function(error)
+                    {
+                        data = error.responseJSON
+                        btn.attr('disabled', false)
+                        toast('error', data.data)
+                    }
+                });
+            })
         })
-        $('#confirmBuyButton').click(function (e) {
-            $(this).attr('disabled', '')
-            const btn = $(this)
-            const typeAcc = $(this).data('productid');
-            $.ajax({
-                url: "{{ route('level.claim') }}",
-                type: 'post',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                dataType: 'json',
-                success: function (data) {
-                    Swal.fire({
-                        title: "Nhận quà hàng ngày thành công!",
-                        text: data.data,
-                        icon: "success"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.reload()
-                        }
-                    });
-                },
-                error: function(error)
-                {
-                    data = error.responseJSON
-                    btn.attr('disabled', false)
-                    toast('error', data.data)
-                }
+
+        $(function () {
+            boxRollovers();
+        });
+
+        function boxRollovers() {
+            $selector = $("li");
+            XAngle = 0;
+            YAngle = 0;
+            Z = 50;
+
+            $selector.on("mousemove", function (e) {
+                var $this = $(this);
+                var XRel = e.pageX - $this.offset().left;
+                var YRel = e.pageY - $this.offset().top;
+                var width = $this.width();
+
+                YAngle = -(0.5 - (XRel / width)) * 40;
+                XAngle = (0.5 - (YRel / width)) * 40;
+                updateView($this.children(".icon"));
             });
-        })
+
+            $selector.on("mouseleave", function () {
+                oLayer = $(this).children(".icon");
+                oLayer.css({ "transform": "perspective(525px) translateZ(0) rotateX(0deg) rotateY(0deg)", "transition": "all 150ms linear 0s", "-webkit-transition": "all 150ms linear 0s" });
+                oLayer.find("strong").css({ "transform": "perspective(525px) translateZ(0) rotateX(0deg) rotateY(0deg)", "transition": "all 150ms linear 0s", "-webkit-transition": "all 150ms linear 0s" });
+            });
+        }
+
+        function updateView(oLayer) {
+            oLayer.css({ "transform": "perspective(525px) translateZ(" + Z + "px) rotateX(" + XAngle + "deg) rotateY(" + YAngle + "deg)", "transition": "none", "-webkit-transition": "none" });
+            oLayer.find("strong").css({ "transform": "perspective(525px) translateZ(" + Z + "px) rotateX(" + (XAngle / 0.66) + "deg) rotateY(" + (YAngle / 0.66) + "deg)", "transition": "none", "-webkit-transition": "none" });
+        }
     </script>
 @endsection

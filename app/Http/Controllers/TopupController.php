@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TheCao;
 use App\Models\Topup;
 use App\Models\User;
 use Carbon\Carbon;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use PayOS\PayOS;
 
 class TopupController extends Controller
@@ -17,6 +19,31 @@ class TopupController extends Controller
     {
         return view('topUp');
     }
+
+    public function storeThecao(Request $request)
+    {
+        try {
+            if (is_numeric($request->thecaoMenhgia) && is_numeric($request->thecaoSeri) && is_numeric($request->thecaoMathe))
+            {
+                $theCao = new TheCao();
+                $theCao->userId = Auth::user()->id;
+                $theCao->cardType = $request->thecaoLoaithe;
+                $theCao->seri = $request->thecaoSeri;
+                $theCao->cardNumber = $request->thecaoMathe;
+                $theCao->amount = $request->thecaoMenhgia;
+                $theCao->status = 0;
+                $theCao->save();
+
+                return Redirect::route('profile')->with('msg', 'Nạp thẻ thành công, vui lòng chờ duyệt.');
+            }else{
+                return Redirect::route('topup')->with('error', 'Sai thông tin nhập vào');
+            }
+        } catch (\Exception $exception)
+        {
+
+        }
+    }
+
     protected function createPayos()
     {
         $payOS = new PayOS(env('PAYOS_CLIENT_ID'), env('PAYOS_API_KEY'), env('PAYOS_CHECKSUM_KEY'));
@@ -208,4 +235,6 @@ class TopupController extends Controller
             ], 500);
         }
     }
+
+
 }

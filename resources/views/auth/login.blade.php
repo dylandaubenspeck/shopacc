@@ -1,77 +1,197 @@
 @extends('layouts.guest')
+@section('head')
+ <link
+        href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ asset('/css/Login.css') }}">
+@endsection
 @section('content')
-    <section style='
-    background-color: #3b82f6;
-    background-image: linear-gradient(to top, rgb(33,58,98) 0%,rgba(0,0,0,0.6) 100%), url("https://preview.redd.it/help-need-grid-lines-gone-v0-ujtagkb2j6z91.png?width=640&crop=smart&auto=webp&s=19bb4f9fe1cf0b24af31b5e08d0723f1fac9e974");
-    background-repeat: repeat;
-    '>
-        <div class="flex h-screen justify-center items-center">
-            <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto w-96">
-                <form action="{{ route('login') }}" method="POST">
-                    @csrf
-                    <div class="mb-6">
-                        <label for="input-group-1" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                    <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
-                                    <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
-                                </svg>
-                            </div>
-                            <input name="username" type="text" id="input-group-1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 " placeholder="Username của bạn">
+    <section class="formLogin dark:bg-gray-900 relative">
+        <div
+            class="relative flex-image-container flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+        >
+            <div class="img-responsive-wrap">
+                <img
+                    src="/img/jett.png"
+                    alt="Character Image"
+                    class="character-image"
+                />
+            </div>
+
+            <div
+                style="
+            border: 2px solid;
+            border-image: linear-gradient(
+                to left,
+                rgba(255, 102, 102, 0.7),
+                transparent
+              )
+              1;
+          "
+                class="form-login w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 z-20 form"
+            >
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1
+                        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+                    >
+                        Đăng nhập
+                    </h1>
+                    <form class="space-y-6 md:space-y-8 md:w-full lg:w-96" action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div>
+                            <label
+                                for="email"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >
+                                Username</label
+                            >
+                            <input
+                                type="text"
+                                name="username"
+                                id="username"
+                                class="bg-gray-50 border text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-pink-500"
+                                placeholder="Username"
+                                required=""
+                            />
+                            @if ($errors->has('username'))
+                                <p class="text-sm text-red-600 dark:text-red-500 mt-2">{{ $errors->first('username') }}</p>
+                            @endif
                         </div>
-                        @if ($errors->has('username'))
-                            <p class="text-sm text-red-600 dark:text-red-500 mt-2">{{ $errors->first('username') }}</p>
-                        @endif
-                    </div>
-
-                    <div class="mb-6">
-                        <label for="input-group-1" class="block mb-2 text-sm font-medium text-gray-900">Mật khẩu</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <input name="password" type="password" id="input-group-1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 " placeholder="Username của bạn">
+                        <div>
+                            <label
+                                for="password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >Mật khấu</label
+                            >
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required=""
+                            />
+                            @if ($errors->has('password'))
+                                <p class="text-sm text-red-600 dark:text-red-500 mt-2">{{ $errors->first('password') }}</p>
+                            @endif
                         </div>
-                        @if ($errors->has('password'))
-                            <p class="text-sm text-red-600 dark:text-red-500 mt-2">{{ $errors->first('password') }}</p>
-                        @endif
-                    </div>
-                    <button
-                        type="submit"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
-                    ><span class="flex justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 my-auto">
-  <path fill-rule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clip-rule="evenodd" />
-</svg>
+                        <div class="flex items-center justify-between">
+                            <a
+                                href="#"
+                                class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                            >Quên mật khẩu ?</a
+                            >
+                        </div>
+                        <button
 
+                            class="loginButton custom-button text-black font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                        >
+                            Đăng nhập
+                        </button>
+                        <div style="color: rgb(0, 0, 0); width: 100%; margin-top: 20px">
+                            ─────────────────────────────────
+                        </div>
+                        <form>
+                            <div id="loginAnother">
+                                <button onclick="location.href = '{{ route('login.discord') }}'"
+                                    style="margin: 0 0 10px"
+                                        type="button"
+                                    class="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-2 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                                >
+                                    <svg
+                                        class="h-6 w-6 mr-3"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="800px"
+                                        height="800px"
+                                        viewBox="0 -28.5 256 256"
+                                        version="1.1"
+                                        preserveAspectRatio="xMidYMid"
+                                        style=""
+                                    >
+                                        <g>
+                                            <path
+                                                d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z"
+                                                fill="#5461ebff"
+                                                fill-rule="nonzero"
+                                            ></path>
+                                        </g>
+                                    </svg>
+                                    <span>Đăng nhập với Discord</span>
+                                </button>
+                                <button onclick="location.href = '{{ route('login.google') }}'"
+                                    style="margin: 0 0 10px"
+                                        type="button"
 
-                            <span class="my-auto ml-2">Đăng nhập</span>
-                        </span></button>
-                </form>
-
-                <div class="inline-flex items-center justify-center w-full">
-                    <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-                    <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2">hoặc đăng nhập bằng</span>
+                                        class="flex items-center bg-white dark:bg-gray-900 border border-gray-300 rounded-lg shadow-md px-2 py-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                                >
+                                    <svg
+                                        class="h-6 w-6 mr-2"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="800px"
+                                        height="800px"
+                                        viewBox="-0.5 0 48 48"
+                                        version="1.1"
+                                    >
+                                        <title>Google-color</title>
+                                        <desc>Created with Sketch.</desc>
+                                        <defs></defs>
+                                        <g
+                                            id="Icons"
+                                            stroke="none"
+                                            stroke-width="1"
+                                            fill="none"
+                                            fill-rule="evenodd"
+                                        >
+                                            <g
+                                                id="Color-"
+                                                transform="translate(-401.000000, -860.000000)"
+                                            >
+                                                <g
+                                                    id="Google"
+                                                    transform="translate(401.000000, 860.000000)"
+                                                >
+                                                    <path
+                                                        d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24"
+                                                        id="Fill-1"
+                                                        fill="#FBBC05"
+                                                    ></path>
+                                                    <path
+                                                        d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333"
+                                                        id="Fill-2"
+                                                        fill="#EB4335"
+                                                    ></path>
+                                                    <path
+                                                        d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667"
+                                                        id="Fill-3"
+                                                        fill="#34A853"
+                                                    ></path>
+                                                    <path
+                                                        d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24"
+                                                        id="Fill-4"
+                                                        fill="#4285F4"
+                                                    ></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span>Đăng nhập với google</span>
+                                </button>
+                            </div>
+                        </form>
+                        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                            Bạn chưa có tài khoản?
+                            <a
+                                href="{{ route('register') }}"
+                                class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                            ><strong>Đăng kí</strong></a
+                            >
+                        </p>
+                    </form>
                 </div>
-
-                <div class="flex justify-center rounded-md w-full" role="group">
-                    <a href="{{ route('login.discord') }}" type="button" class="shadow-sm text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16">
-                            <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
-                        </svg>
-                    </a>
-                    <a href="{{ route('login.google') }}" type="button" class="shadow-sm text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
-                            <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
-                        </svg>
-                    </a>
-                </div>
-
             </div>
         </div>
-
     </section>
 @endsection

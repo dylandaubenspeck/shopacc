@@ -1,175 +1,170 @@
 @extends('layouts.guest')
-@section('head')
-    <link rel="stylesheet" href="{{ asset('/css/Profile.css') }}">
-@endsection
 @section('content')
-    <section>
-        <div id="mainContent">
-            <div class="box">
-                <div class="bg-imageLeft bgimg" style="background-image: url('{{ asset('') }}')"></div>
-                <div class="bg-imageRight bgimg"></div>
-                <div class="childContent">
-                    <div
-                        class="leftContent content"
-                        style="
-                border: 5px solid;
-                border-image: linear-gradient(
-                    to left,
-                    rgba(255, 102, 102, 0.7),
-                    transparent
-                  )
-                  1;
-              "
-                    >
-                        <div class="profile">
-                            <h3>Thông tin cá nhân</h3>
-                        </div>
-                        <div class="itemProfile">
-                            <label class="itemProfile_Child">Tên đăng nhập: </label>
-                            <label class="itemProfile_Child itemProfile_Child1"
-                                >{{ \Illuminate\Support\Facades\Auth::user()->username }}</label
-                            >
-                        </div>
-                        <div class="itemProfile">
-                            <label class="itemProfile_Child">Email: </label>
-                            <label class="itemProfile_Child itemProfile_Child1"
-                            >{{ \Illuminate\Support\Facades\Auth::user()->email ?? 'Trống' }}</label
-                            >
-                        </div>
-                        <div class="itemProfile">
-                            <label class="itemProfile_Child">Số dư: </label>
-                            <label class="itemProfile_Child itemProfile_Child1"
-                            >{{ number_format(\Illuminate\Support\Facades\Auth::user()->balance) }}</label
-                            >
-                        </div>
+    <section style='
+    background-color: #3b82f6;
+    background-image: linear-gradient(to top, rgb(33,58,98) 0%,rgba(0,0,0,0.6) 100%), url("https://preview.redd.it/help-need-grid-lines-gone-v0-ujtagkb2j6z91.png?width=640&crop=smart&auto=webp&s=19bb4f9fe1cf0b24af31b5e08d0723f1fac9e974");
+    background-repeat: repeat;
+    '>
+        <div class="py-8 mx-auto max-w-screen-2xl lg:py-16">
+            <div class="bg-gray/30 backdrop-blur-sm border border-gray-50 rounded-lg mb-8 min-h-20 p-3" style="border-color: rgb(255 255 255 / 10%) !important;">
+                <div class="flex">
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                         src="https://i.pinimg.com/474x/2f/aa/d3/2faad31c599c50d588953bd9d09a2362.jpg"
+                         alt="Bonnie image"/>
+                    <div class="my-auto mx-3">
+                        <h5 class="mb-1 text-xl font-medium text-gray-100">{{ \Illuminate\Support\Facades\Auth::user()->username }} <span class="text-gray-400 text-sm">(UID: {{ \Illuminate\Support\Facades\Auth::id() }})</span></h5>
+                        <span class="text-sm text-gray-100">Tham gia vào: {{ \Carbon\Carbon::parse(\Illuminate\Support\Facades\Auth::user()->created_at)->format('d/m/Y') }}</span>
                     </div>
+                </div>
+{{--                    <div class="">--}}
+{{--                        <div class="gap-8 space-y-2 text-end">--}}
+{{--                            <div>--}}
+{{--                                <dl>--}}
+{{--                                    <dt class="text-sm font-medium text-gray-500">Số dư</dt>--}}
+{{--                                        <span class="text-sm font-medium text-gray-500 font-semibold">{{ number_format(\Illuminate\Support\Facades\Auth::user()->balance) }}đ</span>--}}
+{{--                                    </dd>--}}
+{{--                                </dl>--}}
+{{--                                <dl>--}}
+{{--                                    <dt class="text-sm font-medium text-gray-500">Đã tiêu</dt>--}}
+{{--                                        <span class="text-sm font-medium text-gray-500 font-semibold">{{ number_format(\App\Models\Transactions::where([--}}
+{{--    ['userId', \Illuminate\Support\Facades\Auth::id()],--}}
+{{--    ['status', 1],--}}
+{{--    ['transactionType', 1],--}}
+{{--])->sum('amount')) }}đ</span>--}}
+{{--                                    </dd>--}}
+{{--                                </dl>--}}
+{{--                                <dl>--}}
+{{--                                    <dt class="text-sm font-medium text-gray-500">Số account đã mua</dt>--}}
+{{--                                        <span class="text-sm font-medium text-gray-500 font-semibold">{{ number_format(\App\Models\Transactions::where([--}}
+{{--    ['userId', \Illuminate\Support\Facades\Auth::id()],--}}
+{{--    ['status', 1],--}}
+{{--    ['transactionType', 1],--}}
+{{--])->count()) }}</span>--}}
+{{--                                    </dd>--}}
+{{--                                </dl>--}}
+{{--                                <dl>--}}
+{{--                                    <dt class="text-sm font-medium text-gray-500">Tổng nạp</dt>--}}
+{{--                                        <span class="text-sm font-medium text-gray-500 font-semibold">{{ number_format(\App\Models\Topup::where([--}}
+{{--    ['userId', \Illuminate\Support\Facades\Auth::id()],--}}
+{{--    ['status', 1],--}}
+{{--])->sum('amount')) }}đ</span>--}}
+{{--                                    </dd>--}}
+{{--                                </dl>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                    <!---------------------------------------RIGHT-->
-                    <div
-                        class="rightContent content"
-                        style="
-                z-index: 999;
-                margin-right: 0px;
-                border: 5px solid;
-                border-image: linear-gradient(
-                    to left,
-                    rgba(255, 102, 102, 0.7),
-                    transparent
-                  )
-                  1;
-              "
-                    >
-                        <div class="changedPass">
-                            <h3>Thay đổi mật khẩu</h3>
-                        </div>
-                        <div class="itemPass userName">
-                            <label class="itemProfile_Child">Mật khẩu cũ </label>
-                            <input type="text" class="oldPass inputPass" />
-                        </div>
-                        <div class="itemPass email">
-                            <label class="itemProfile_Child">Mật khẩu mới: </label>
-                            <input type="text" class="newPass inputPass" />
-                            <br />
-
-                            <div>
-                  <span
-                      class="errorPass errline1"
-                      style="
-                      color: rgb(222, 52, 52);
-                      font-size: 13px;
-                      margin-left: 27%;
-                    "
-                  ></span>
-                                <span
-                                    class="errorPass errline2"
-                                    style="
-                      color: rgb(222, 52, 52);
-                      font-size: 13px;
-                      margin-left: 32%;
-                    "
-                                ></span>
-                            </div>
-                        </div>
-                        <div class="itemPass price">
-                            <label class="itemProfile_Child">Nhập lại mật khẩu mới: </label>
-                            <input type="text" class="renewPass inputPass" />
-                            <br />
-                            <span
-                                class="errorRePass"
-                                style="
-                    color: rgb(222, 52, 52);
-                    font-size: 13px;
-                    margin-left: 26%;
-                  "
-                            ></span>
-                        </div>
-
-                        <div class="flex items-center space-x-4">
-                            <button
-                                onclick="validatePasswords()"
-                                style="margin-left: 47%; margin-top: 27px"
-                                class="rounded-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
-                            >
-                  <span
-                      class="rounded-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 group-hover:bg-opacity-0"
-                  >
-                    Thay đổi
-                  </span>
-                            </button>
+{{--                    </div>--}}
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50  border border-gray-200  rounded-lg p-8 md:p-12" >
+                    <h2 class="text-gray-900  text-3xl font-extrabold mb-2">Danh sách account đã mua</h2>
+                    <div class="relative overflow-x-auto mt-3">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    ID
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Loại account
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Thông tin
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Ngày mua
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($transactions as $item)
+                                <tr class="bg-white border-b">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        {{ $item->id }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $item->productName }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $item->result }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $item->created_at }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <div class="w-4/6 mx-auto mt-4 flex justify-center">
+                            {{ $transactions->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="bottom">
-            <div class="orderHistory">
-                <h3 class="headerHistory"><b>Lịch sử mua hàng</b></h3>
-                <table class="orderHistory_child history">
-                    <tr>
-                        <th class="itemTd itemID">ID</th>
-                        <th class="itemTd">Tên sản phẩm</th>
-                        <th class="itemTd">Số tiền</th>
 
-                        <th class="itemTd">Tài khoản</th>
-                        <th class="itemTd">Ngày mua</th>
-                    </tr>
-                    @foreach($transactions as $item)
-                    <tr>
-                        <td class="itemTd">{{ $item->id }}</td>
-                        <td class="itemTd">{{ $item->productName }}</td>
-                        <td class="itemTd">{{ $item->amount }}</td>
+                <div class="bg-gray-50  border border-gray-200  rounded-lg p-8 md:p-12">
+                    <h2 class="text-gray-900  text-3xl font-extrabold mb-2">Danh sách nạp tiền</h2>
+                    <div class="relative overflow-x-auto mt-3">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    ID
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Phương thức
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Số tiền
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Trạng thái
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Ngày nạp
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($topups as $item)
+                                <tr class="bg-white border-b">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        {{ $item->id }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $item->paymentBank == "napthe" ? "Thẻ cào" : "Mã QR" }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ number_format($item->amount) }}đ
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @switch($item->status)
+                                            @case(0)
+                                                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-yellow-300">Chờ xử lí</span>
 
-                        <td class="itemTd">{{ $item->result }}</td>
-                        <td class="itemTd">{{ $item->created_at }}</td>
-                    </tr>
-                    @endforeach
-                </table>
-                <div class="w-4/6 mx-auto mt-4">
-                    {{ $transactions->links('pagination::tailwind') }}
-                </div>
-            </div>
-            <div class="orderHistory">
-                <h3 class="headerHistory"><b>Lịch sử nạp tiền </b></h3>
-                <table class="depositHistory_child history">
-                    <tr>
-                        <th class="itemTd itemID">ID</th>
-                        <th class="itemTd">Bank</th>
-                        <th class="itemTd">Trạng thái</th>
-                        <th class="itemTd">Số tiền</th>
-                        <th class="itemTd">Ngày nạp</th>
-                    </tr>
-                    @foreach($topups as $item)
-                    <tr>
-                        <td class="itemTd">{{ $item->id }}</td>
-                        <td class="itemTd">MB</td>
-                        <td class="itemTd">{{ $item->status == 1 ? "Thành công" : ($item->status == 2 ? "Thất bại" : "Đang chờ") }}</td>
-                        <td class="itemTd">{{ number_format($item->amount) }}</td>
-                        <td class="itemTd">{{ $item->created_at }}</td>
-                    </tr>
-                    @endforeach
-                </table>
-                <div class="w-4/6 mx-auto mt-4">
-                    {{ $topups->links('pagination::tailwind') }}
+                                                @break
+
+                                            @case(1)
+                                                <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-green-400">Thành công</span>
+
+                                            @break
+
+                                            @case(2)
+                                                <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-red-400">Thất bại</span>
+
+                                                @break
+                                        @endswitch
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $item->created_at }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <div class="w-4/6 mx-auto mt-4 flex justify-center">
+                            {{ $topups->links('pagination::tailwind') }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

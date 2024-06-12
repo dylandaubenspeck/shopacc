@@ -1,0 +1,46 @@
+.logAndres{
+    display: flex   ;
+}
+
+.header { background-image: url(/img/download.jpg);
+background-position: 355px 0px;
+height: 600px;
+}
+main {
+    background-image: url(/img/secondIndex.jpg);
+}
+
+.trueIndex { 
+    background-image: url(/img/bg.jpg);
+    background-repeat: no-repeat;
+    background-size:100% ;
+} 
+
+#mainContent  { 
+   background-repeat: no-repeat ;
+   background-size: cover;
+    background-image: url(/img/img2.jpg);
+}
+.mainContent1 {
+    transition: ease 1s;
+}
+.mainContent1:hover { 
+    scale: 1.1;
+}
+
+.custom-button:hover {
+    box-shadow: 0px 8px 15px rgba(244, 28, 28, 0.2); /* Shadow khi hover */
+}
+#card {}
+
+
+#IdCard {
+    width: 100%;
+    color: black;
+    margin-top: 30px;
+    outline: none;
+    border-radius: 2px;
+    background: pink; /* Background hồng */
+    border-bottom: 2px solid red; /* Đường viền phía trên màu đỏ */
+}
+
