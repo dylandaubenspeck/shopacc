@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
 <link rel="stylesheet" href="{{ asset('css/responsive_.css') }}">
 <link rel="stylesheet" href="{{ asset('fonts/fontawesome-free-5.15.3-web/css/all.min.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="{{ asset('fonts/fontawesome-free-5.15.3-web/css/all.min.css') }}">
 <style>
     .app__container {
         display: flex;
@@ -54,24 +57,7 @@
                             <!-- History search box -->
                             <div class="header__search-history">
                                 <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
-                                <ul class="header__search-history-list">
-                                    <li class="header__search-history-item">
-                                        <a href="#">
-                                            BẬT MÍ 5.5 - SĂN TRƯỚC MÃ 5.5
-                                            <img src="https://cf.shopee.vn/file/491389dce9eabc3510a3e8a21cc40ef7"
-                                                alt="Sale">
-                                        </a>
-                                    </li>
-                                    <li class="header__search-history-item">
-                                        <a href="#">Kem trị mụn</a>
-                                    </li>
-                                    <li class="header__search-history-item">
-                                        <a href="#">Iphone 13 Pro Max</a>
-                                    </li>
-                                    <li class="header__search-history-item">
-                                        <a href="#">Máy tính xách tay</a>
-                                    </li>
-                                </ul>
+                               
                             </div>
                         </div>
                         <div class="header__search-select">
@@ -102,114 +88,11 @@
 
                     <!-- Cart layout -->
                     <div class="header__cart">
-                        <div class="header__cart-wrap">
-                            <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
-
-                            <span class="header__cart-notice">3</span>
-
-                            <!-- No cart: header__cart-list--no-cart -->
-                            <div class="header__cart-list">
-                                <img src="./assets/img/no_cart.png" alt="No cart" class="header__cart-no-cart-img">
-                                <span class="header__cart-no-cart-msg">Chưa có sản phẩm</span>
-
-                                <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
-                                <ul class="header__cart-list-item">
-                                    <!-- Cart item -->
-                                    <li class="header__cart-item">
-                                        <img src="https://runningwithmiles.boardingarea.com/wp-content/uploads/2015/02/Screen-Shot-2015-02-26-at-3.57.06-PM.png"
-                                            alt="" class="header__cart-img">
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">Máy ảnh samsung DSLR 3D</h5>
-                                                <div class="divheader__cart-item-price-wrap">
-                                                    <span class="header__cart-item-price">2.000.000đ</span>
-                                                    <span class="header__cart-item-multiply">x</span>
-                                                    <span class="header__cart-item-qnt">2</span>
-                                                </div>
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-description">
-                                                    Phân loại: Bạc
-                                                </span>
-                                                <span class="header__cart-item-remove">
-                                                    Xóa
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <!-- Cart item -->
-                                    <li class="header__cart-item">
-                                        <img src="http://scontent.webpluscnd.net/photos-df/a-0/3764-2194538-1/laptop-asus-gaming-rog-strix-g-g731gth7114t.png?atk=4eb081075dd7d7faad048034c002a610"
-                                            alt="" class="header__cart-img">
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">
-                                                    Laptop Asus Gaming ROG Strix</h5>
-                                                <div class="divheader__cart-item-price-wrap">
-                                                    <span class="header__cart-item-price">29.000.000đ</span>
-                                                    <span class="header__cart-item-multiply">x</span>
-                                                    <span class="header__cart-item-qnt">1</span>
-                                                </div>
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-description">
-                                                    Phân loại: Laptop Gaming
-                                                </span>
-                                                <span class="header__cart-item-remove">
-                                                    Xóa
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <!-- Cart item -->
-                                    <li class="header__cart-item">
-                                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBEUFRgSFREYGBgaGBoYEhgaGBgSGBgZGBgaGRgYGBocIS4lHB4rHxgaJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QHRERHj8sJCc6Nj8/P0A/NEA/ODg6PTE+PT8zOzo9ND87ND8/NjE+PzQ0PzQ7NDoxQDQ3Nj00MTY0Mf/AABEIAMIBAwMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABAIDBQYHCAH/xABBEAACAQICBgcFBgMHBQAAAAABAgADEQQhBRIxQVFhBgcTInGBkTJCYqGxUnKCwdHwFCOSQ1OissLh8RUkM2Nz/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAMCAf/EAB8RAQACAgICAwAAAAAAAAAAAAABAgMREhMhMUFSgf/aAAwDAQACEQMRAD8A7NERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREx2m9JphaFTEv7NNS1r2JOxVBO8kgDxgRekXSbC4FNetUzIulNbF3+6pIFuZIHOaFietxiT2WBBUC+s1ZSQLXu6oDqgcb2nItNaVr4yu9eq92ckm5IUDcovsUCwA5bzczKaI0jgKFAo+COIrMdY1e2fDmnY2TsbL5kk5ncQIHUtD9agc2xGF1VNrPSftLXO1lcLYDbkSeU6Ho/SFGui1aNRXRtjKbjLIg8CDkQcxPLzYimwLBQrqbMptZ1Y5OthYMNjAWB9oAWaZHAdK8XgkLYaqU1yA2Suvdsb6rrtzAvbZeB6cieXq3T/SdQntMU7i1tUMKS+JFMLeZHozprSCVv4lbgalQa9u0Fyp1Q4JLMNYDuk8DugekInGcF1l45appVnwpKgE/y6isbi9gdcKDYjKx2+My69a2oNatgWKb3pVBUI43VlWw8GPlA6fE0zRXWTovEAEVXp32h0a6/eKawXxJtNmwOk8PXF6NenUG/UdXt42OUCbERAREQEREBERAREQEREBERAREQEREBETW+lfTDCaPS9Z7uRenSWxd+dvdX4jl4nKBsLMALk2AzJ2C00PpF1paPw10o3xLjK1MgUwfiqHI/hDTknSzp3jceSrv2dH3aKEheWudrnxy4ATVw0De9MdaWlK5IR1w6blpqC1ubvc35jVmpYvH4iub1a9Sodt3d6n+YmRkEvIkClUl5KUqRJIppfKB9FGmF1mVgB7TABgOZzvb1l2lhsLUyWsh5MdQ38HteZSnTATUIuCLMON9omraU0U1LvDvJfbvHJv1gZt+jRUhwgPIg6py4CY4aHxFJtZHZW3EXU+omKw+Lqp7FR0+67J9DMlgtMY5jqLVZj8YWrbxLg2ECawr4ghK9NXe1qdQFabg7lYAXdeVr777QcrhuhWJWzit2IuDd2VlvfIEDfysecxmIqYmqjJUpICRdXXVU6w3ML7DyAtlMt0dxFWstXCYtmAqKGpVnYt2dZPYYtfYbcdx4zdIrM6lPJMxG4XsT0eoUlq1xiga9Ea1ZadOyMWzIZctVT8IsBmAZbTUcLUA3XVveHmNhHLhM1gqtNqlOrVKr29F8LjluvcemDq1stxtYNs2Z5zVtEUalEPTezIGOoQ1+RI4KQAf+ZrLWsa4sYbzO+TZcF0n0hh/ZxTFRc6tQ9uthnmXuwA5MJn9Bdb1N7LiKFtgL0rkeJptmq+DMeU59iELpqMTbeR3SRwP79JDTRyIbqDfZckmSXeiNF9KdH4khaOLpsx2IW1HP4Hs3ymanlevQB2iZjQfTDSOCIFOuzINtKpeqluAudZfwkecD0hE0zol1gYXGkUz/ACa5y7NyCGP/AK2yDeBs3K2c3OAiIgIiICIiAiIgIiICIiBiekLYoYdzhiBVt3SV1yBfvFV2FgNl7i+47DwXSPRzXd6lWvWZySarNYm/xkrl57J6Qmu6fxmjatJ6GIxdFFbJr10pkEbPe2g7jlygedX0TRXbUP8AUn6S2cBh/wC+P9SfpLfSDRdPD12pUq9PEIM6dSmwcMpvYNa9mFsx+RExOoeB9IGcGAp+7WH+E/Qyr+CcbCD6iYC0qVyNhI8CRAzmo42qfr9JJwTC/Mbt/pMAmNqjY588/rKmx1Q2uRly+cDbRXA2w+JXNSATb2cu+N9r5H93tNaoaVcZMNYb+Prv85cd0a2q10JuVbapH2d48jaBeOiqdRg1NrISdYEG6kbVAP57OczWFwyouqq2HzJ4k7zIeHxI2SUlcQJQWVhZYWsJWtSBe1Z91ZSrysNApKS29KXg0qgYyrRkKrSm89FcJTeqwcAkLdAdm3M+IykTpnhlWrqimF7oOtndr/LK1uMr1xw5bQnLPZw1+tIdJ0ToV1lVKOrh8aWqUsgtfNqif/Te6/F7Q3627C4DolUxCdolVLb7azEHeGFhYzE6b0BWwx741kPsuBlfgeBnJxWiN68OxnpNuO/L0lh66VFV0YMjAMjKQyspGRUjIiX5556EdNa2j3CNd8Mxu9PayE7XpX2HeV2Hkc53rRuPpYimtalUDo4ujDYR+RByIOYIIMmsmREQEREBERAREQEREDSOs7Rb1sOKqsxWnftUDHVZGtdmTYxUgbdgLTkq4VBsRR4ACejatNWUqwBUghgcwQRYgzhnSLRJwmIeib6oOtTJ95GvqnmRmpPFTAw/YjhPhwoO6SQJWogMPoWjXTvU1LLkxtYke6bjPl4gzG43ocu1GZeR7w/X5zN4KuabhwL7mH2lO0fveBNjpYrCv7+qTnZlIt4kXUeZ3QOS4ro5iU2KHHFTn6Gx9LzE1KbKbMpU8CCp9DO6HRiuNZCrr9pSHHqMpgMdoZgtQuoZLMyg961rnMGBzAujFQEVdgYktYneTnkJn6OgqLC6VjfjYML8gLfWWMHoPtaBqDuspFmzII1Q5Fr/ABbfhmKrU3otYMQTmLXW43HwgZ1tA1l9l0bxuh9Mx85ZfDYhPapt4ga49VvaQcPp3EJtYMOYz9RMjR6UfapkeBB+toFpMVJKYmfaum8M/trc8Spv5EZiQjVwzEBKhQnIawJX1IuPG5gZNMRJC1pr6Yjnfw2eXKS6WJgZpXlYeY2nXl9KkDI4fEsjCojFWBupG0TZv+u4TEoExSapGx1BIvxFu8vhmJpqvPrPN1vNfTF8cW9tnbo5g3DamPXVO1S6E5bNYXGy+8TBf9TqYVXwjhK9PYo1tZRfehXYD9ncc8s742qZFeanJ8xGpT6PtO4Q6gFzYWG4bbDhebL0H6W1NH1LG7Ydj/OpjMg7O0QbnG8e8BY7iNdcS0JJd6mwWKp1kWrTcMjqGRhmGB2GSZwrq46X/wAE/YVX/wC2dsydlFz744KfeH4uN+6AwPsREBERAREQEREBNJ6y9EdrhxiFHeom7c6be1/SbNyAbjN2lqtTVlZGAKsCGB2EEWIPlA88q0uq0ymneimLwrMeyZ6QJ1Kid8alzYuBmhta9xa+8zBJUG28CYrS6j2/f7/5tzkJXl1XgTlcX1tjAZOLqwG3uttHHI7LjasmJpTEqNXtNcWtq1AKwJtmCxs5uOL7JhVqkHbz58b/ACv4hvtS8Knlx5AHd9025WYQJ+jMVSpKtM0DqatgUYMy2It3XAysWuNYnIbc7XMdobBYsaq1FLe6pvSqg79VXALeVxlMdreRvlycZkeBFz4X4yiooYEbmB4ZHePHfbirQMNpXoLXp3KNrfCw1G9dhPpNWxWEqUm1Xpsh3XG3wOw+U6EmlMRTUBah1bgFG/mIPdIUNfVF+FspF0hpzXXUfDIxO3M6p3+wQfrA0SnSZtg2bScgBxJ3SplUbDfidg8hw8flJmIJOVgF3Ko1VB3EDjuuc+chMIFxHl9KkitkeW0StGgZGlWkxK0w6vY2klKkDLpVl0PMUlWSVqwJFRpGdp9Z5YdoBjLRn1jLZMCRTadi6rek5qJ/A1Wu6LfDsfepjaniu74fumcYRpmNFYl6bpURtV0YMjcGBuPEcRvBIgel4mM0BpVcVQSuuWsLMv2XGTL67OIsd8ycBERAREQEREBERATX9MdEMDibl6IVz/aU/wCW9+Jtkx+8DNgiByXS3Vviqd2w7rWXcrWp1PAX7reN18JqGKw1Wi+pVpujfZdShPMX2jmMp6JkfGYSlVUpUpq6narKHHoYHnl2yve1vkNt/IgHyn2nU5eW6+Ytw4r4as6ppbq5wz3ag7UW+yb1KZ8ibjyNhwnPdOdGcVg86qDszcLUQ6yHle11OqAcwL9mLXgRFqX38LH5ox+h4kCfda+wfEo4MCAyk7s7DzaRQfLceRJtlxIcZcmlevv2e94W7rjyzPiYFVUqbjcy6w8LAH5FfnMVihcX37+ZU5+VxJ1R7fhb5H8gG/wyFV94ef5H6D1gYnErw8j9DIjjP5+sn1Vy8Mv0+REhuMv34/nAsOMvDKUgy5ylsiBcLbD5emX6StHllTlbz/f73QDAlq8vpVkFWlxXgTu0lLNI6vPutAuF5QWlstPhaBIRpk8A+cwyNMlgn+X7MDqfVxpXsqxoMe5V2cBUUZH8SgjxCzqk8/YCsylXU2ZSGU8GU3B9RO66Mxi16VOsux1DW4EjMeRuPKBMiIgIiICIiAiIgIiICIiAkbGYVKqNTqKGVhZlOwj8vykmIHD+lnRl8HU1c2pPlSffY90ox3MBqnnq34ga+W48r+DZFf6hPQOltG0sTSahUW6sLcCDuKncROFaf0XUw1Z6LjNdYobWDhrOjryJDeBuN0DGPnkd62bxU2P+ZvSRaj5q28ix8SM/mBJNX/Vl+IW+rGQa2w/CSfo/5wLD7SPP8j9RIjjb6+n+xkurtHp67PnaWXGYPr4HI/KBDcb5bcZyW6S06ZX8v3+90COIMrZZSYC8+hpRPogXVaVa0sgxeBeLT5eW9afLwL6NJ+DfOYxTJeGbOBtWAfK3Cdd6ucZrYd6ROdNzb7r94f4tecawD/Mf7fpOj9WuJtXdNz07+aMLfJ2gdNiIgIiICIiAiIgIiICIiAiIgJq/Tbo2MZSDIB21Mlqe7WBBDITzBy4G24mbREDzZpDDvQY06o1HCr3X7jXW+djtF7Z7Ji6uIp3PfS2XvDnf8p6bx+jqFddSvRp1F+y6K4vxAYZGapj+q3Q9W5GHakTvp1HW3gpJUekDgrVUtbXFwBY3G0b5UVDDLZ6zqOP6lKZzoY51+Goivf8AEpW3pNYx3VPpalc0xSq5/wBnU1GIvtIcKPK5ganqEgH18RkfmJT2e0cdniP9ryXpDQ+kcNc4jCVEUbWZG1P617vzkNcWpsSpG/LvDL98IFl6ctam6Tw1Ntjr4E6p+coq4ZtoHMcMoGOZZ8tJdSjwGW7w3SyyQLRnyVlMv3+90pIgLxefLT7aAUyVhznIyqZktF6PrVnWnSps7t7KqCxO8/IXvugZbAPs8fr/AMTpfVrgneu1a3cRCt9xdsgvPu3J/DxkHoz1ZYg2fFOKa5XpqQ9Q8iwuqeI1t+zbOqYDBUqCClSQIq7APmSdpJ4nMwJcREBERAREQEREBERAREQEREBERAREQERED4RNQ6Q9XmjcXdjR7Gp/eUbUyT8S21W8SL8xNwiBwHTvVVj6F2pBcSnwdyoBzRjn+FieU0irgXpsUZXpuPaVg1Nx4qbET1rIOkNF4fELqV6CVF3B0V7cxcZHwgeVT2o98nxs31nwu+8A+X6TvukOq3R750mqUTwDdqvmHu3owmvYrqmrD/x4ik/31el9NeByE1G3ovlcfnLZf4J02v1XaQGxKbeDj/UBIj9VukzspUx41F/K8DnfafCI7U8B8/1nSsP1OaQY9+th0G+zPUb01APnNl0V1M4NLHEYmpVI3IFoKeR9pvRhA4vgaNSrUWmiM7MbIqLrMfAAXnozoF0X/gqIaoB27gdpax1F2imCPUkZE8QAZmdDaAweDXUw+HSmLWJAu7fec3ZvMmZWAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgf//Z"
-                                            alt="" class="header__cart-img">
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">
-                                                    Chuột không dây Logitech G903
-                                                </h5>
-                                                <div class="divheader__cart-item-price-wrap">
-                                                    <span class="header__cart-item-price">1.999.000đ</span>
-                                                    <span class="header__cart-item-multiply">x</span>
-                                                    <span class="header__cart-item-qnt">1</span>
-                                                </div>
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-description">
-                                                    Phân loại: Chuột gaming
-                                                </span>
-                                                <span class="header__cart-item-remove">
-                                                    Xóa
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-
-                                <a href="#" class="header__cart-view-cart btn btn--primary">Xem giỏ hàng</a>    
-                            </div>
-                        </div>
+                     
                     </div>
                 </div>
             </div>
-            <ul class="header__sort-bar">
-                <li class="header__sort-item">
-                    <a href="" class="header__sort-link">Liên quan</a>
-                </li>
-                <li class="header__sort-item header__sort-item--active">
-                    <a href="" class="header__sort-link">Mới nhất</a>
-                </li>
-                <li class="header__sort-item">
-                    <a href="" class="header__sort-link">Bán chạy</a>
-                </li>
-                <li class="header__sort-item">
-                    <a href="" class="header__sort-link">Giá</a>
-                </li>
-            </ul>
+          
         </section>
 
         <!-- Banner section -->
@@ -223,7 +106,7 @@
                     <div class="shop-info">
                         <img src="your-image-url" alt="Shop Logo">
                         <div class="shop-details">
-                            <h1>Name Shop</h1>
+                            <h1>SELLER</h1>
                             <p>Online 9 phút trước</p>
                             <div class="shop-actions">
                                 <button>+ THEO DÕI</button>
@@ -231,8 +114,27 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    
+                     {{-- Star Rating  --}}
+                   
+                        <div class="card p-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="ratings">
+                                    <i class="fa fa-star rating-color"></i>
+                                    <i class="fa fa-star rating-color"></i>
+                                    <i class="fa fa-star rating-color"></i>
+                                    <i class="fa fa-star rating-color"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h5 class="review-count">12 Reviews</h5>
+                            </div>
+                            
+
+                          
+          
             </section>
+            <img class="app__container_img" src="/img/neon.png" alt="">
             <div class="grid wide">
                 <div class="row sm-gutter app_content">
                     <!-- Category left bar -->
@@ -289,71 +191,14 @@
                         </div>
 
                         <!-- Mobile Category -->
-                        <nav class="mobile-category">
-                            <ul class="mobile-category__list">
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                                <li class="mobile-category__item">
-                                    <a href="" class="mobile-category__link">Dụng cụ & thiết bị tiện ích</a>
-                                </li>
-                            </ul>
-                        </nav>
+                      
 
                         <!-- Product list -->
                         <div class="home-product">
                             <div class="row sm-gutter">
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -365,20 +210,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -389,7 +221,7 @@
                                 </div>
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -401,20 +233,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -425,7 +244,7 @@
                                 </div>
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -437,20 +256,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -461,7 +267,7 @@
                                 </div>
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -473,20 +279,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -497,7 +290,7 @@
                                 </div>
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -509,20 +302,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -533,7 +313,7 @@
                                 </div>
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -545,20 +325,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -569,7 +336,7 @@
                                 </div>
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -581,20 +348,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -605,7 +359,7 @@
                                 </div>
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -617,20 +371,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -641,7 +382,7 @@
                                 </div>
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -653,20 +394,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -677,7 +405,7 @@
                                 </div>
 
                                 <!-- Product item -->
-                                <div class="col l-2-4 m-4 c-6">
+                                <div class="col l-2-4 m-4 c-6 product-item">
                                     <div class="home-product-item">
                                         <div class="home-product-item__img"
                                             style="background-image: url(https://avatarfiles.alphacoders.com/327/327114.jpg);">
@@ -689,20 +417,7 @@
                                        
                                             <span class="home-product-item__price-current">24.999.000đ</span>
                                         </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item__like--liked">
-                                                <i class="home-product-item__like-icon-empty fa-regular fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fa-solid fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class="home-product-item__star--gold fa-solid fa-star"></i>
-                                                <i class=" fa-solid fa-star"></i>
-                                            </div>
-                                           
-                                        </div>
+                                     
                                      
                                         <div class="home-product-item__favourite">
                                             <i class="fa-solid fa-check"></i>
@@ -864,5 +579,10 @@
         </div>
     </div>
     <script src="./assets/js/main.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            document.querySelector('.app__container_img').classList.add('show');
+        });
+    </script>
 </body>
 @endsection

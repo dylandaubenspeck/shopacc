@@ -82,6 +82,7 @@ header {
     background-color: rgb(18, 18, 18);
 }
 .logAndres{
+    display: flex;
     margin-top: 3px;
 }
 .item_header{

@@ -68,7 +68,6 @@ Route::middleware([\App\Http\Middleware\AdminCheck::class])->group(function () {
     Route::get('/admin/levels/new', [\App\Http\Controllers\AdminController::class, 'addLevelView'])->name('admin.levels.new');
 
     Route::get('/admin/topup', [\App\Http\Controllers\AdminController::class, 'topupView'])->name('admin.topup');
-
 });
 
 
@@ -89,10 +88,30 @@ Route::get('/loginWith/google', function () {
 Route::get('/discord/oauth', [\App\Http\Controllers\UtilsController::class, 'handleDiscordLogin']);
 Route::get('/google/oauth', [\App\Http\Controllers\UtilsController::class, 'handleGoogleLogin']);
 //Route::get('/facebook/oauth', [\App\Http\Controllers\UtilsController::class, 'handleFBLogin']);
+route::prefix('/testing')->group(function () {
+    Route::get('/profileSeller', [MarketProfileController::class, 'ProfileSeller']);
+    Route::get('/indexDashboard', function () {
+        return view('shards-dashboard_custom.index');
+    })->name("sellerDashboard.index");
 
-Route::get('/profileSeller', [MarketProfileController::class,'ProfileSeller']     ); 
+
+    Route::get('/tableDashboard', function () {
+        return view('shards-dashboard_custom.tables');
+    })->name("sellerDashboard.table");
+
+    Route::get('/userDashboard', function () {
+        return view('shards-dashboard_custom.user-profile-lite');
+    })->name("sellerDashboard.user");
+
+    Route::get('/upAccDashboard', function () {
+        return view('shards-dashboard_custom.add-new-post');
+    })->name("sellerDashboard.upAcc");
+    
+    Route::get('/ratingcDashboard', function () {
+        return view('shards-dashboard_custom.rating');
+    })->name("sellerDashboard.rating");
+});
 
 
 
-require __DIR__.'/auth.php';
-
+require __DIR__ . '/auth.php';

@@ -1,0 +1,169 @@
+.table tbody tr:nth-child(odd) {
+    background-color: rgb(255, 69, 84, 0.3);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.navbar-nav .nav-item .nav-link:active {
+    color: rgb(255, 71, 84) !important;
+}
+
+.navbar-nav .nav-item .nav-link:active {
+    color: rgb(255, 71, 84) !important;
+}
+
+.active {
+    box-shadow: inset .1875rem 0 0 rgb(255, 71, 84) !important;
+    color: red;
+}
+
+.nav-link {
+    color: rgb(61, 81, 112) !important;
+}
+
+.material-icons {
+    color: rgb(255, 71, 84) !important;
+}
+
+.user_profile {
+    height: 900px;
+}
+
+.listacc {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(/img/jett_t.jpg);
+}
+
+.input_account {
+    border-color: rgb(255, 69, 84);
+    width: 60%;
+}
+
+
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.uploadMainContainer {
+    position: absolute;
+    height: 900px;
+    transform: translateX(10%);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.ratingContainer {
+height: 100%;
+    display: block;
+    width: 50%; /* Điều chỉnh kích thước phần tử theo nhu cầu của bạn */
+    margin: auto; /* Căn giữa theo chiều ngang */
+}
+
+.img_upload {
+    position: absolute;
+    transform: translateX(50%) translateY(-10%);
+    width: 90%;
+    z-index: 10;
+    animation: gamingAppear 1s ease-out forwards;
+}
+
+@keyframes gamingAppear {
+    0% {
+        opacity: 0;
+        transform: translateX(50%) translateY(-30%) scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(50%) translateY(-10%) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(50%) translateY(-10%) scale(1);
+    }
+}
+
+.ratingContainer   { 
+    position: absolute;
+    transform: translateX(50%) translateY(50%);
+}
+
+.uploadContainer {
+    /* background-image: url(/shards-dashboard/images/peakpx.jpg); */
+    position: absolute;
+    height: 900px;
+    transform: translateX(-40%) translateY(50%);
+    width: 40%;
+    margin: auto;
+    margin-top: 150px;
+    height: 80%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    z-index: 1;
+    opacity: 0;
+    /* Bắt đầu với opacity là 0 */
+    animation: fadeInUp 0.5s ease forwards;
+    /* Hiệu ứng animation */
+}
+
+.backVal {
+    color: white;
+    border-color: white !important;
+    background-color: rgb(255, 69, 84);
+}
+
+.uploadMainContainer {
+
+    /* background-image: url(/shards-dashboard/images/peakpx.jpg); */
+}
+
+.profContainer {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(237, 232, 225);
+
+
+}
+
+
+.ratings{
+
+}
+
+.ratings i{
+    
+    color:#cecece;
+    font-size:14px;
+}
+
+.rating-color{
+    color:#fbc634 !important;
+}
+
+.review-count{
+    font-weight:200;
+    margin-bottom:2px;
+    font-size:14px !important;
+}
+
+.small-ratings i{
+  color:#cecece;   
+}
+
+.review-stat{
+    font-weight:300;
+    font-size:18px;
+    margin-bottom:2px;
+}
