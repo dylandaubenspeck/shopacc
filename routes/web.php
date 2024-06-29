@@ -88,6 +88,10 @@ Route::get('/loginWith/google', function () {
 Route::get('/discord/oauth', [\App\Http\Controllers\UtilsController::class, 'handleDiscordLogin']);
 Route::get('/google/oauth', [\App\Http\Controllers\UtilsController::class, 'handleGoogleLogin']);
 //Route::get('/facebook/oauth', [\App\Http\Controllers\UtilsController::class, 'handleFBLogin']);
+
+
+
+// TESTING 
 route::prefix('/testing')->group(function () {
     Route::get('/profileSeller', [MarketProfileController::class, 'ProfileSeller']);
     Route::get('/indexDashboard', function () {
